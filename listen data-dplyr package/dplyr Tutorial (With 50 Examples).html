@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://www.listendata.com/2016/08/dplyr-tutorial.html -->
+<html dir="ltr" lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr" xmlns:og="http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if lt IE 9]> <script async src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+<link rel="stylesheet" href="./dplyr Tutorial (With 50 Examples)_files/css" media="all"><script src="./dplyr Tutorial (With 50 Examples)_files/ca-pub-4695912699318711.js.download"></script><script src="./dplyr Tutorial (With 50 Examples)_files/cb=gapi.loaded_1" async=""></script><script src="./dplyr Tutorial (With 50 Examples)_files/cb=gapi.loaded_0" async=""></script><script async="" src="./dplyr Tutorial (With 50 Examples)_files/analytics.js.download"></script><script async="" src="./dplyr Tutorial (With 50 Examples)_files/jquery.min.js.download"></script>
+
+<meta content="summary" name="twitter:card">
+<meta content="@ListenData" name="twitter:site">
+<meta content="@DeepanshuBhall1" name="twitter:creator">
+<meta content="http://www.listendata.com/" name="twitter:domain">
+<meta content="http://www.listendata.com/2016/08/dplyr-tutorial.html" name="twitter:url">
+<meta content="dplyr Tutorial (With 50 Examples)" name="twitter:title">
+<meta content="https://2.bp.blogspot.com/-pcUH6lXqF2s/WAfItWaMd0I/AAAAAAAAFjU/QWfpSsrXTOsL1ABv-3rnh6ipqKVuPp2YQCLcB/s1600/dplyr.png" name="twitter:image:src">
+<meta content="http://www.listendata.com/2016/08/dplyr-tutorial.html" name="twitter:url">
+<meta content="Listen Data" property="og:site_name">
+<meta content="dplyr Tutorial (With 50 Examples)" property="og:title">
+<meta content="article" property="og:type">
+<meta content="" property="og:description">
+<meta content="http://www.listendata.com/2016/08/dplyr-tutorial.html" property="og:url">
+<meta content="https://2.bp.blogspot.com/-pcUH6lXqF2s/WAfItWaMd0I/AAAAAAAAFjU/QWfpSsrXTOsL1ABv-3rnh6ipqKVuPp2YQCLcB/s72-c/dplyr.png" property="og:image">
+<meta content="10204724803294460" property="fb:admins">
+<meta content="1054461654652175" property="fb:app_id">
+<meta content="en_US" property="og:locale">
+<meta content="en_GB" property="og:locale:alternate">
+<link href="https://plus.google.com/102225578813866331180" rel="publisher">
+<meta content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1" name="viewport">
+
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="CE34D0D68A93442C0826CBAD63B98E2C" name="msvalidate.01">
+<meta content="english" name="language">
+
+<meta content="blogger" name="generator">
+<link href="http://www.listendata.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://www.listendata.com/2016/08/dplyr-tutorial.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="Listen Data - Atom" href="http://www.listendata.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Listen Data - RSS" href="http://www.listendata.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Listen Data - Atom" href="https://www.blogger.com/feeds/7958828565254404797/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="Listen Data - Atom" href="http://www.listendata.com/feeds/7711108305188223144/comments/default">
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/449444907-ieretrofit.js"></script>
+<![endif]-->
+<link href="./dplyr Tutorial (With 50 Examples)_files/dplyr.png" rel="image_src">
+<meta content="http://www.listendata.com/2016/08/dplyr-tutorial.html" property="og:url">
+<meta content="dplyr Tutorial (With 50 Examples)" property="og:title">
+<meta content=" dplyr R Tutorial   The dplyr package is one of the most powerful and popular package in R. This package was written by the most popular R p..." property="og:description">
+<meta content="https://2.bp.blogspot.com/-pcUH6lXqF2s/WAfItWaMd0I/AAAAAAAAFjU/QWfpSsrXTOsL1ABv-3rnh6ipqKVuPp2YQCLcB/w1200-h630-p-k-no-nu/dplyr.png" property="og:image">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<meta content="Listen Data: dplyr Tutorial (With 50 Examples)" name="Description">
+<title>dplyr Tutorial (With 50 Examples)</title>
+<link href="./dplyr Tutorial (With 50 Examples)_files/css(1)" rel="stylesheet" type="text/css"><link type="text/css" rel="stylesheet" href="./dplyr Tutorial (With 50 Examples)_files/1691512649-css_bundle_v2.css">
+<style id="page-skin-1" type="text/css"><!--
+/*<Variable name="keycolor" description="Main Color" type="color" default="#66bbdd"/><Group description="Main Backgrounds" selector=".body-fauxcolumns-outer"><Variable name="body.background.color" description="Outer Background" type="color" default="#5A5955"/><Variable name="wrapper.background.color" description="Main Background" type="color" default="#ffffff"/></Group><Variable name="body.background" description="Body Background" type="background" color="#5A5955" default="$(color) none repeat scroll top left"/><Variable name="body.background.override" description="Body Background Override" type="string" default=""/><Group description="Page Text" selector="body"><Variable name="body.font" description="Font" type="font" default="normal normal 13px Arial, sans-serif"/><Variable name="body.text.color" description="Main Text Color" type="color" default="#666666"/><Variable name="footer.text.color" description="Footer Text Color" type="color" default="#ffffff"/></Group><Group description="Links" selector=".main-outer"><Variable name="link.color" description="Link Color" type="color" default="#0099cc"/><Variable name="link.visited.color" description="Visited Color" type="color" default="#0099cc"/><Variable name="link.hover.color" description="Hover Color" type="color" default="#006c8e"/></Group><Group description="Blog Title" selector=".header h1.title, .header p.title"><Variable name="header.font" description="Font" type="font" default="normal normal 24px Oswald, Arial, sans-serif"/><Variable name="header.text.color" description="Title Color" type="color" default="#333333"/></Group><Group description="Blog Description" selector=".header .description"><Variable name="description.text.color" description="Description Color" type="color" default="#555555"/></Group><Group description="Post Title" selector="h2.post-title, .comments h4, h1.post-title"><Variable name="post.title.font" description="Font" type="font" default="normal normal 18px Oswald, Arial, sans-serif"/><Variable name="post.title.color" description="Text Color" type="color" default="#0099cc"/></Group><Group description="Gadgets" selector=".sidebar h2"><Variable name="widget.title.background.color" description="Background Color" type="color" default="#333333"/><Variable name="widget.title.font" description="Title Font" type="font" default="normal normal 12px Oswald, Arial, sans-serif"/><Variable name="widget.title.text.color" description="Title Color" type="color" default="#ffffff"/><Variable name="widget.alternate.text.color" description="Alternate Color" type="color" default="#999999"/></Group><Group description="Post Footer" selector=".post-footer"><Variable name="post.footer.background.color" description="Background Color" type="color" default="transparent"/><Variable name="post.footer.text.color" description="Text Color" type="color" default="#666666"/><Variable name="post.footer.border.color" description="Border Color" type="color" default="#eeeeee"/></Group><Group description="Secondary Navigation Menu" selector=".nav-2"><Variable name="secondary.navigation.background.color" description="Background Color" type="color" default="#333333"/><Variable name="secondary.navigation.text.color" description="Text Color" type="color" default="#ffffff"/><Variable name="secondary.navigation.hover.color" description="Hover Color" type="color" default="#000000"/></Group><Group description="Primary Navigation Menu" selector="#primary-menu"><Variable name="primary.navigation.background.color" description="Background Color" type="color" default="#333333"/><Variable name="primary.navigation.text.color" description="Text Color" type="color" default="#ffffff"/><Variable name="primary.navigation.hover.color" description="Hover Color" type="color" default="#000000"/></Group><Group description="Footer" selector="#footer-wrapper"><Variable name="footer.color" description="Footer Color" type="color" default="#ffffff"/></Group>*/html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1;display:block}*{margin:0;padding:0}html{display:block}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:&#39;&#39;content:none}table{border-collapse:collapse;border-spacing:0}.navbar,.post-feeds,.feed-links{display:none}.section,.widget{margin:0;padding:0}strong,b{font-weight:bold}cite,em,i{font-style:italic}a:link{color:#0099cc;text-decoration:none;outline:0;transition:all .5s;-moz-transition:all .5s;-webkit-transition:all .5s}a:visited{color:#0099cc;text-decoration:none}a:hover{color:#006c8e;text-decoration:none}a img{border:0;border-width:0;outline:0}abbr,acronym{border-bottom:1px dotted;cursor:help}sup,sub{vertical-align:baseline;position:relative;top:-.4em;font-size:86%}sub{top:.4em}small{font-size:86%}kbd{font-size:80%;border:1px solid #999;padding:2px 5px;border-bottom-width:2px;border-radius:3px}mark{background-color:#ba0000;color:black}p,blockquote,pre,table,figure,hr,form,ol,ul,dl{margin:1.5em 0}hr{height:1px;border:0;background-color:#666}h1,h2,h3,h4,h5,h6{font-weight:bold;line-height:normal;margin:0 0 .6em}h1{font-size:200%}h2{font-size:180%}h3{font-size:160%}h4{font-size:140%}h5{font-size:120%}h6{font-size:100%}ol,ul,dl{margin:.5em 0 .5em 3em}ol{list-style:decimal outside}ul{list-style:disc outside}li{margin:.5em 0}dt{font-weight:bold}dd{margin:0 0 .5em 2em}input,button,select,textarea{font:inherit;font-size:100%;line-height:normal;vertical-align:baseline}textarea{display:block;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}pre,code{font-family:&quot;Courier New&quot;,Courier,Monospace;color:inherit}pre{white-space:pre;word-wrap:normal;overflow:auto}blockquote{background:#ffffcc;margin-left:2em;margin-right:2em;border-left:4px solid #cc6600;padding:1em 1em;font-style:italic}blockquote p{margin:0;padding-top:10px}.post-body table[border=&quot;1&quot;] th,.post-body table[border=&quot;1&quot;] td,.post-body table[border=&quot;1&quot;] caption{border:1px solid;padding:.2em .5em;text-align:left;vertical-align:top}.post-body table.tr-caption-container{border:1px solid #ddd}.post-body th{font-weight:bold}.post-body table[border=&quot;1&quot;] caption{border:0;font-style:italic}.post-body table{margin-left: auto;
+margin-right: auto;background:#f6f6f6}.post-body td,.post-body th{vertical-align:top;text-align:left;font-size:16px;padding:3px 5px;border:1px solid #ddd}.post-body th{background:#ba0000;color:#ffffff}.post-body table.tr-caption-container td{background:#f6f6f6;border:0;padding:8px}.post-body table.tr-caption-container,.post-body table.tr-caption-container img,.post-body img,img{max-width:100%;height:auto}.post-body td.tr-caption{color:#666;font-size:80%;padding:0 8px 8px!important}body#layout #wrapper{padding:0;margin:30px 20px 20px}body#layout .panel{float:left width:88px}.clear{clear:both}.clear:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}body{background:#5A5955 none repeat scroll top left;margin:0;padding:0;color:#666;font:normal normal 13px Arial,sans-serif;text-align:left}#wrapper{background:#fff;max-width:1050px;margin:20px auto;padding:20px}.toggleMenu1{display:none;background:#2f2e2c;padding:0 15px;height:48px;line-height:48px;color:#000!important}#nav-bar1{font-family:"Oswald",Arial,sans-serif;background:#2f2e2c;height:48px;line-height:48px;text-transform:uppercase}ul.nav-menu1{background:#2f2e2c;list-style:none;margin:0;*zoom:1;float:left}ul.nav-menu1:before,ul.nav-menu1:after{content:" ";display:table}ul.nav-menu1:after{clear:both}ul.nav-menu1 ul{list-style:none;margin:0;width:9em}ul.nav-menu1 li{position:relative;margin:0}ul.nav-menu1>li{float:left}ul.nav-menu1>li>.parent{background-repeat:no-repeat;background-position:right}ul.nav-menu1 li.selected{background:#ba0000}ul.nav-menu1 li:hover>a,#nav a:hover{background:#ba0000}ul.nav-menu1 li ul{position:absolute;left:-9999px}ul.nav-menu1>li.hover>ul{left:0}ul.nav-menu1 li li.hover ul{left:100%;top:0}ul.nav-menu1 a.active{background:#ba0000}ul.nav-menu1 li a{display:block;padding:0 15px;color:#fff;height:48px;line-height:48px}ul.nav-menu1 li li a{display:block;background:#555;position:relative;z-index:100;height:34px;line-height:34px}ul.nav-menu1 li li li a{background:#666;z-index:200}ul.nav-menu1 a:hover,ul.nav-menu1 a.active:hover{background:#222}
+#header-wrapper{margin:0 auto;overflow:hidden}.header{margin:0 0 20px}.header h1.title,.header p.title{font:normal normal 24px "Oswald",Arial,sans-serif;margin:0;text-transform:uppercase;color:#333}.header .description{color:#555}.header a{color:#333}.header a:hover{color:#09c}.toggleMenu{display:block;background:#ba0000;padding:0 15px;height:48px;line-height:48px;color:#fff!important}
+#nav-bar{font-family:"Oswald",Arial,sans-serif;background:#2f2e2c;height:48px;line-height:48px;text-transform:uppercase}ul.nav-menu{background:#2f2e2c;list-style:none;margin:0;*zoom:1;float:left}ul.nav-menu:before,ul.nav-menu:after{content:" ";display:table}ul.nav-menu:after{clear:both}ul.nav-menu ul{list-style:none;margin:0;width:9em}ul.nav-menu li{position:relative;margin:0}ul.nav-menu>li{float:left}ul.nav-menu>li>.parent{background-repeat:no-repeat;background-position:right}ul.nav-menu li.selected{background:#ba0000}ul.nav-menu li:hover>a,#nav a:hover{background:#ba0000}ul.nav-menu li ul{position:absolute;left:-9999px}ul.nav-menu>li.hover>ul{left:0}ul.nav-menu li li.hover ul{left:100%;top:0}ul.nav-menu a.active{background:#ba0000}ul.nav-menu li a{display:block;padding:0 15px;color:#fff;line-height:48px}ul.nav-menu li li a{display:block;width:170px;background:#555;position:relative;z-index:100;height:auto;line-height:34px}ul.nav-menu li li li a{background:#666;z-index:200}ul.nav-menu a:hover,ul.nav-menu a.active:hover{background:#222}#search-form{background:#444;float:right;margin:0}#search-form input#search-box[type="text"]{height:36px;line-height:36px;margin:5px 0 5px 10px;padding:0 10px;width:150px;color:#636363;border:0;text-transform:uppercase}#search-form input#search-button[type="submit"]{background:#ba0000;color:#fff;height:36px;line-height:36px;margin:5px 10px 5px 0;padding:0 10px;border:0;text-transform:uppercase}#search-form input#search-button[type="submit"]:hover{background:#000}#search-form input#search-box[type="text"]:focus{background:#eee;outline:0}#content-wrapper{margin:0 auto;overflow:hidden;word-wrap:break-word}#post-wrapper{float:left;width:65.11627906976%;max-width:750px;margin:0 0 10px;padding:20px 0}.post-container{padding:0 20px 0 0}.breadcrumbs{font-size:12px;color:#666;padding:10px 0;margin:0 0 20px;border-bottom:3px dotted #eee}.post{margin:0 0 20px;padding:0 0 20px;border-bottom:3px dotted #eee;position:relative;min-height:90px}.post-body{font-size:16px;line-height:1.7;text-align:justify} .post-body a:link {text-decoration: underline;}
+.affiliate-box {
+margin:20px 0 15px;
+color: #333333; background-color: #f2f2f2;
+font-size: 14px; border: 1px dashed #999999;
+line-height: 14px; padding: 15px;
+overflow:hidden;}
+h2.post-title,.post-snippet,.post-footer{margin-left:210px}h2.post-title,h1.post-title{font:normal normal 18px "Oswald",Arial,sans-serif;text-transform:uppercase}h2.post-title a,h1.post-title a,h2.post-title,h1.post-title{color:#424242}h2.post-title a:hover,h1.post-title a:hover{color:#ba0000}.img-thumbnail{background:#FFF;float:left;margin:0 10px 5px 0;padding:6px;border:1px solid #e5e5e5}.img-thumbnail img{width:222px;min-height:145px}a.readmore{float:right;background:#ba0000;display:inline-block;padding:6px 7px;margin:15px 0 0 0;color:#fff;font-size:11px}a.readmore:hover{background:#333}a.recent-post-newer-link,a.recent-post-older-link{float:right;font:normal normal 12px Oswald, Arial, sans-serif;padding:4px 8px;display:inline-block;background:#ba0000;color:#fff;text-transform:uppercase}a.recent-post-newer-link{margin-right:5px}a.recent-post-newer-link:hover,a.recent-post-older-link:hover{background:#333}a.mobile-recent-post-newer-link,a.mobile-recent-post-older-link{float:right;font-size:13px;padding:4px 8px;display:inline-block;background:#ba0000;color:#fff;text-transform:uppercase}a.mobile-recent-post-newer-link{margin-right:5px}.post-footer{background:#fdfdfd;color:#666;padding:5px;margin-bottom:5px;font-size:12px}.postthumb{transition:all .4s;-moz-transition:all .4s;-webkit-transition:all .4s;-o-transition:all .4s;margin:3px 10px 3px 0;float:left;width:80px;height:80px;border:4px solid #ddd}.postthumb:hover{opacity:.6;border:4px solid #eee}.admin-meta,.comment-meta,.date-meta,.label-meta{background-image:url(http://4.bp.blogspot.com/-RTSeOwxDBks/VC-S10IdSxI/AAAAAAAADy4/v9_P0-lks_A/s1600/csg-542f92beb36dc.png);background-repeat:no-repeat;margin-right:8px;padding-left:16px;display:inline-block}.post-footer a{color:#888}.post-footer a:hover{color:#09c}.admin-meta{background-position:0 0;height:12px}.comment-meta{background-position:0 -22px;height:12px}.date-meta{background-position:0 -44px;height:12px}.label-meta{background-position:0 -66px;height:12px}.author-profile{background:#edeff1;padding:15px;margin:15px 0;overflow:hidden}.author-profile img{border:1px solid #efefef;float:left;margin-right:6px}.author-profile a.g-profile{font-weight:bold}#blog-pager{display:none}.first-recent-post-title{background:#FFF;margin-right:10px;margin-bottom:10px}.recent-post-title{background:#eee;margin-bottom:10px}.first-recent-post-title h2,.recent-post-title h2{font:normal normal 12px Oswald, Arial, sans-serif;margin:0;padding:4px 8px;display:inline-block;background:#ba0000;color:#fff;text-transform:uppercase}.recent-post-title a{color:#fff}#sidebar-wrapper{float:right;width:34.88372093023256%;max-width:300px;margin:0 auto;padding:20px 0}.sidebar-container{padding:0}
+.sidebar h2,.panel h2{font:normal normal 16px "Oswald",Arial,sans-serif;text-transform:uppercase;background:#BA0000;
+color:#fff;margin:0 0 10px 0;padding:6px 8px}.sidebar .widget-content{padding:0 0 20px}
+.sidebar ul,.sidebar ol{font-size:15px; margin:0 0 15px 0; padding:6px 18px}.sidebar li{margin:0; padding:2px}.set,.panel{margin:0}.tabs .panel{padding:0}.set .tabs
+.widget ul{padding:0;list-style:none}.set .tabs .widget li{margin:0;padding:.25em 0;float:none}.tabs-menu{border-bottom:3px solid #ba0000;padding:0;margin:0}.tabs-menu li{font:normal normal 12px "Oswald",Arial,sans-serif;display:inline-block;*display:inline;zoom:1;margin:0 3px -1px 0;padding:8px 12px;background-color:#edeff1;cursor:pointer;position:relative;text-transform:uppercase}.tabs-menu .active-tab{background-color:#ba0000;color:#fff;border-bottom:0;padding-bottom:9px}.tabs-content{padding:15px 0 20px}#footer-wrapper{margin:0 auto;overflow:hidden;padding:20px 0;border-top:3px solid #ba0000}.footer-left{float:left}.footer-right{float:right}.PopularPosts .item-thumbnail{margin:0 6px 0 0;display:inline}.PopularPosts .item-thumbnail a img{height:78px;width:78px;display:block;margin:0;padding:0}.PopularPosts .widget-content ul li{padding:6px 0!important;border-bottom:1px dotted #e2e2e2}.PopularPosts .item-title{font-weight:bold}.PopularPosts .item-snippet{font-size:11px;color:#666}.profile-img{display:inline;opaciry:10;margin:0 6px 3px 0}.label-size-1,.label-size-2,.label-size-3,.label-size-4,.label-size-5{font-size:100%;filter:alpha(100);opacity:10}.cloud-label-widget-content{text-align:left}.label-size{background:#ba0000;display:block;float:left;margin:0 3px 3px 0;color:#fff;font-size:11px;text-transform:uppercase}.label-size a,.label-size span{display:inline-block;color:#fff;padding:6px 8px;font-weight:bold}.label-size:hover{background:#333}
+.label-count{white-space:nowrap;padding-right:3px;margin-left:-3px;background:#ba0000;color:#fff!important}.label-size{line-height:1.2}.share-buttons-box{margin:20px 0 15px;padding:15px;overflow:hidden}
+#bottombar-wrapper ul, .sidebar ul {
+list-style-type:none;
+margin:0 0 0 0;
+padding:0 0 0 0;
+}
+#bottombar-wrapper td, #bottombar-wrapper th, .sidebar td, .sidebar th {vertical-align:center;text-align:left;font-size:13px;padding:0 0 0 0;border:0 none;
+}
+.share-buttons{margin:0;height:67px;float:left}.share-buttons .share{float:left;margin-right:10px;display:inline-block}@media screen and (max-width:1024px){#wrapper{margin:0 auto}}@media screen and (max-width:768px){.active{display:block}ul.nav-menu a.active{background:transparent}#search-form{width:100%;margin:0 0 0 0!important}ul.nav-menu>li{float:none}ul.nav-menu>li>.parent{background-position:95% 50%}ul.nav-menu li li .parent{background-repeat:no-repeat;background-position:95% 50%}ul.nav-menu{float:none;width:100%}ul.nav-menu ul{display:block;width:100%;float:none}ul.nav-menu>li.hover>ul,ul.nav-menu li li.hover ul{position:static}#search-form{background:#666}}@media only screen and (max-width:768px){#wrapper{padding:18px}#post-wrapper,#sidebar-wrapper{float:none;width:100%;max-width:100%}.post-container{padding:0}}@media only screen and (max-width:640px){#wrapper{padding:14px}#post-wrapper,#sidebar-wrapper{float:none;width:100%;max-width:100%}.footer-left,.footer-right{float:none;text-align:center}}@media only screen and (max-width:480px){#wrapper{padding:12px}#post-wrapper,#sidebar-wrapper{float:none;width:100%;max-width:100%}h2.post-title,.post-snippet,.post-footer{margin-left:110px}.img-thumbnail{width:110px;height:71px}.img-thumbnail img{width:100px;height:71px}}@media screen and (max-width:320px){#wrapper{padding:10px}#post-wrapper,#sidebar-wrapper{float:none;width:100%;max-width:100%}}
+--></style>
+<style type="text/css">
+pre {font-family: Andale Mono, Lucida Console, Monaco, fixed, monospace; 
+                color: #333333; background-color: #f2f2f2;
+                font-size: 14px; border: 1px solid #999999;
+                line-height: 14px; padding: 5px; 
+                overflow: auto; width: 100%; 
+			    white-space: pre-wrap;
+}
+</style>
+<style type="text/css">#related-post{margin:20px 0 30px}#related-post h3{font-family:"Oswald",Arial,sans-serif;text-transform:uppercase;color:#555;font-size:16px;font-weight:normal;padding:0 0 8px;margin:0}#related-post ul{margin-left:0}</style>
+<script>var relatedTitles=new Array();var relatedTitlesNum=0;var relatedUrls=new Array();function related_results_labels(c){for(var b=0;b<c.feed.entry.length;b++){var d=c.feed.entry[b];relatedTitles[relatedTitlesNum]=d.title.$t;for(var a=0;a<d.link.length;a++){if(d.link[a].rel=="alternate"){relatedUrls[relatedTitlesNum]=d.link[a].href;relatedTitlesNum++;break}}}}function removeRelatedDuplicates(){var b=new Array(0);var c=new Array(0);for(var a=0;a<relatedUrls.length;a++){if(!contains(b,relatedUrls[a])){b.length+=1;b[b.length-1]=relatedUrls[a];c.length+=1;c[c.length-1]=relatedTitles[a]}}relatedTitles=c;relatedUrls=b}function contains(b,d){for(var c=0;c<b.length;c++){if(b[c]==d){return true}}return false}function printRelatedLabels(){var b=Math.floor((relatedTitles.length-1)*Math.random());var a=0;document.write("<ul>");while(a<relatedTitles.length&&a<20){document.write('<li><a href="'+relatedUrls[b]+'">'+relatedTitles[b]+"</a></li>");if(b<relatedTitles.length-1){b++}else{b=0}a++}document.write("</ul>");document.write()} </script>
+<style type="text/css">.comment-form{overflow:hidden}.comments h3{font-family:"Oswald",arial,sans-serif;line-height:16px;text-transform:uppercase;font-weight:normal;color:#666;margin:0 0 20px 0;font-size:16px;padding:0}h4#comment-post-message{display:none;margin:0}.comments{clear:both;margin-top:10px;margin-bottom:0}.comments .comments-content{font-size:13px;margin-bottom:8px}.comments .comments-content .comment-thread ol{text-align:left;margin:13px 0;padding:0}.comments .avatar-image-container{background:#edeff1;overflow:hidden;padding:6px}.comments .comment-block{position:relative;background:#edeff1;padding:15px;margin-left:60px}.comments .comment-block:before{content:"";width:0;height:0;position:absolute;right:100%;top:15px;border-width:10px;border-style:solid;border-color:transparent #edeff1 transparent transparent;display:block}.comments .comments-content .comment-replies{margin:8px 0;margin-left:60px}.comments .comments-content .comment-thread:empty{display:none}.comments .comment-replybox-single{background:#ced3d9;padding:0;margin:8px 0;margin-left:60px}.comments .comment-replybox-thread{background:#edeff1;margin:8px 0 0 0;padding:0}.blogger-iframe-colorize{display:block!important}.comments .comments-content .comment{margin-bottom:6px;padding:0}.comments .comments-content .comment:first-child{padding:0;margin:0}.comments .comments-content .comment:last-child{padding:0;margin:0}.comments .comment-thread.inline-thread .comment,.comments .comment-thread.inline-thread .comment:last-child{margin:0 0 5px 30%}.comment .comment-thread.inline-thread .comment:nth-child(6){margin:0 0 5px 25%}.comment .comment-thread.inline-thread .comment:nth-child(5){margin:0 0 5px 20%}.comment .comment-thread.inline-thread .comment:nth-child(4){margin:0 0 5px 15%}.comment .comment-thread.inline-thread .comment:nth-child(3){margin:0 0 5px 10%}.comment .comment-thread.inline-thread .comment:nth-child(2){margin:0 0 5px 5%}.comment .comment-thread.inline-thread .comment:nth-child(1){margin:0 0 5px 0}.comments .comments-content .comment-thread{margin:0;padding:0}.comments .comments-content .inline-thread{padding:10px 0;margin:0}.comments .comments-content .icon.blog-author{position:absolute;top:-2px;right:-2px;margin:0;background-image:url(http://3.bp.blogspot.com/-c0gwWErZ6ZI/UbSD539E_qI/AAAAAAAAAPQ/vQuaJw27r1A/s1600/bitmap.png);width:59px;height:43px}.comments .comment .comment-actions a{background:#ba0000;display:inline-block;color:#fff;font-weight:bold;font-size:10px;line-height:15px;padding:4px 8px;margin:4px 8px 0 0}.comments .comment .comment-actions a:hover,.comments .continue a:hover{text-decoration:none;background:#333}.comments .continue a{background:#ba0000;color:#fff;display:inline-block;padding:4px 8px;font-size:10px}.pesan-komentar{background:#666;position:relative;color:#fff;padding:10px 20px;margin:8px}.pesan-komentar p{line-height:normal;margin:0}.pesan-komentar:before{content:"";width:0;height:0;position:absolute;top:100%;left:30px;border-width:10px;border-style:solid;border-color:#666 transparent transparent transparent;display:block}</style>
+<style>.post-footer{margin-left:0!important;margin-bottom:20px!important}</style>
+<script type="text/javascript">
+//<![CDATA[
+function bp_thumbnail_resize(image_url,blog_title)
+{
+var image_width=200;
+var image_height=130;
+image_tag='<img width="'+image_width+'" height="'+image_height+'" src="'+image_url.replace('/s72-c/','/w'+image_width+'-h'+image_height+'-c/')+'" alt="'+blog_title+'" title="'+blog_title+'"/>';
+if(image_url!="") return image_tag;
+else return "";
+}
+//]]>
+</script>
+<script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-76384860-1', 'auto', 'blogger');
+          ga('blogger.send', 'pageview');
+        </script>
+<style>
+.header-left{
+display: inline-block;
+float: left;
+}
+#header-right {
+display:inline-block;
+float:right;
+margin-top: 10px;
+margin-right: 0px;
+}
+</style>
+<script type="text/javascript">
+//<![CDATA[
+function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("script")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" }) }
+loadCSS("http://fonts.googleapis.com/css?family=Oswald");
+//]]>
+</script>
+<link href="./dplyr Tutorial (With 50 Examples)_files/authorization.css" rel="stylesheet">
+<script type="text/javascript" src="./dplyr Tutorial (With 50 Examples)_files/google_top_exp.js.download"></script><style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0} </style></head>
+<body class="loading">
+<div class="navbar section" id="navbar"><div class="widget Navbar" data-version="1" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="" tabindex="0" vspace="0" width="100%" id="navbar-iframe" name="navbar-iframe" src="./dplyr Tutorial (With 50 Examples)_files/navbar.html"></iframe></div>
+<script type="text/javascript" src="./dplyr Tutorial (With 50 Examples)_files/plusone.js.download" gapi_processed="true"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d7958828565254404797\x26blogName\x3dListen+Data\x26publishMode\x3dPUBLISH_MODE_HOSTED\x26navbarType\x3dLIGHT\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttp://www.listendata.com/search\x26blogLocale\x3den_GB\x26v\x3d2\x26homepageUrl\x3dhttp://www.listendata.com/\x26targetPostID\x3d7711108305188223144\x26blogPostOrPageUrl\x3dhttp://www.listendata.com/2016/08/dplyr-tutorial.html\x26vt\x3d4662223807398258481',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id="wrapper">
+<nav id="nav-bar1">
+<a class="toggleMenu1" href="http://www.listendata.com/2016/08/dplyr-tutorial.html#">Menu</a>
+<ul class="nav-menu1">
+<li><a href="http://www.listendata.com/">Home</a></li>
+<li><a href="http://www.listendata.com/p/about-listen-data.html">About</a></li>
+<li><a href="http://www.listendata.com/p/site-map.html">Index</a></li>
+<li><a href="http://www.listendata.com/p/write-for-us.html">Write For Us</a></li>
+</ul>
+</nav>
+<header id="header-wrapper">
+<div class="header header-left section" id="header"><div class="widget Header" data-version="1" id="Header1">
+<div id="header-inner">
+<a href="http://www.listendata.com/" style="display: block">
+<img alt="Listen Data" height="95px; " id="Header1_headerimg" src="./dplyr Tutorial (With 50 Examples)_files/listendata-logo.png" style="display: block" width="309px; ">
+</a>
+</div>
+</div></div>
+<div style="clear:both;"></div>
+<div class="header-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</header>
+<nav id="nav-bar">
+<a class="toggleMenu" href="http://www.listendata.com/2016/08/dplyr-tutorial.html#" style="display: none;">Menu</a>
+<ul class="nav-menu">
+<li class="selected"><a href="http://www.listendata.com/">Home</a></li>
+<li>
+<a href="http://www.listendata.com/p/excel-tutorials.html" class="parent">Excel</a>
+<ul>
+<li><a href="http://www.listendata.com/p/excel-for-beginners.html">Functions</a></li>
+<li>
+<a href="http://www.listendata.com/p/advanced-excel-tutorials.html">
+Advanced
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/search/label/Excel%20Dashboard">
+ Dashboard / Charts
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/p/excel-vba-tutorials.html">
+Macros
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/p/statistical-analysis-using-excel.html">
+Statistical Analysis
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/p/mathematics-with-excel.html">
+Mathematical Analysis
+</a>
+</li><li>
+<a href="http://www.listendata.com/2014/05/mis-developer-senior-reporting-analyst.html">
+Resumes
+</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="http://www.listendata.com/p/excel-vba-tutorials.html">
+VBA
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/p/sas-tutorials.html" class="parent">
+SAS
+</a>
+<ul>
+<li>
+<a href="http://www.listendata.com/p/sas-tutorials.html">
+Tutorials
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/search/label/SAS%20Certification">
+SAS Certification
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/2013/09/sas-interview-questions-base-sas.html">
+Interview Questions
+</a>
+</li><li>
+<a href="http://www.listendata.com/p/resume-templates.html">
+Resumes
+</a>
+</li>
+</ul></li>
+<li>
+<a href="http://www.listendata.com/p/r-programming-tutorials.html">
+R
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/p/proc-sql.html">
+SQL
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/p/spss-tutorials.html">
+SPSS
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/p/statistics-tutorials.html">
+Data Science
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/search/label/Analytics">Resources</a>
+</li>
+<li>
+<a href="http://www.listendata.com/search/label/Infographics">
+Infographics
+</a>
+</li>
+<li>
+<a href="http://www.listendata.com/search/label/Excel%20Charts"> Charts </a>
+</li>
+<li>
+<a href="http://analyticshumor.blogspot.in/" target="_blank">
+Humor
+</a>
+</li>
+</ul>
+<form action="http://www.listendata.com/search" id="search-form" method="get" style="display: inline;"><input id="search-box" name="q" onblur="if(this.value==&#39;&#39;)this.value=this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value=&#39;&#39;;" type="text" value="Search..." vinput="">
+<input id="search-button" type="submit" value="Go"></form>
+</nav>
+<div class="clear"></div>
+<div id="content-wrapper">
+<div id="post-wrapper">
+<div class="post-container">
+<div class="main section" id="main"><div class="widget Blog" data-version="1" id="Blog1">
+<div class="breadcrumbs"><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.listendata.com/" itemprop="url"><span itemprop="title">Home</span></a></span> » <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.listendata.com/search/label/dplyr?&amp;max-results=8" itemprop="url"><span itemprop="title">dplyr</span></a></span> » 
+<span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.listendata.com/search/label/R%20Tutorial?&amp;max-results=8" itemprop="url"><span itemprop="title">R Tutorial</span></a></span>
+ » <span>dplyr Tutorial (With 50 Examples)</span>
+</div>
+<div class="blog-posts hfeed">
+<!--Can't find substitution for tag [defaultAdStart]-->
+
+<div class="date-outer">
+
+<div class="date-posts">
+<div class="post-outer">
+<div class="post hentry uncustomized-post-template" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+<meta itemtype="https://schema.org/WebPage" itemid="http://www.listendata.com/2016/08/dplyr-tutorial.html" itemprop="mainEntityOfPage" itemscope="itemscope">
+<meta content="https://2.bp.blogspot.com/-pcUH6lXqF2s/WAfItWaMd0I/AAAAAAAAFjU/QWfpSsrXTOsL1ABv-3rnh6ipqKVuPp2YQCLcB/s1600/dplyr.png" itemprop="image">
+<a name="7711108305188223144"></a>
+<h1 class="post-title entry-title" itemprop="headline">
+dplyr Tutorial (With 50 Examples)
+</h1>
+<div class="post-footer">
+<span class="admin-meta vcard">
+<span class="fn" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+<meta content="https://plus.google.com/106408624196456987435" itemprop="url">
+<a href="https://plus.google.com/+DeepanshuBhalla/posts" rel="author" target="_blank" title="author profile">
+<span itemprop="name">Deepanshu Bhalla</span>
+</a>
+</span>
+</span>
+<span class="comment-meta">
+<a href="http://www.listendata.com/2016/08/dplyr-tutorial.html#comment-form" onclick="">
+17 Comments 
+</a>
+</span>
+<span class="label-meta">
+<a href="http://www.listendata.com/search/label/dplyr" rel="tag">dplyr</a>,
+<a href="http://www.listendata.com/search/label/R%20Tutorial" rel="tag">R Tutorial</a>
+</span>
+</div>
+
+
+<script async="" src="./dplyr Tutorial (With 50 Examples)_files/adsbygoogle.js.download"></script>
+<!-- New Paragraph -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-4695912699318711" data-ad-slot="4202636189" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./dplyr Tutorial (With 50 Examples)_files/saved_resource.html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post-body entry-content" id="post-body-7711108305188223144" itemprop="description articleBody">
+
+<div id="adsense-target">
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<span style="color: #990000; font-size: x-large;"><b>dplyr R Tutorial</b></span><br>
+<br>
+The dplyr package is one of the most powerful and popular package in R. This package was written by the most popular R programmer Hadley Wickham who has written many useful R packages such as ggplot2, tidyr etc. This post includes several examples and tips of how to use dply package for cleaning and transforming data. It's a complete tutorial on data manipulation and data wrangling with R.<br>
+<br>
+<div>
+<b><span style="color: #990000; font-size: x-large;">What is dplyr?</span></b></div>
+<div>
+<br></div>
+<div>
+The dplyr is a powerful R-package to manipulate, clean and summarize unstructured data. In short, it makes data exploration and data manipulation easy and fast in R.</div>
+<div>
+<b><span style="color: #990000; font-size: large;"><br></span></b></div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">What's special about dplyr?</span></b></div>
+<div>
+<br></div>
+The package "dplyr" comprises many functions that perform mostly used data manipulation operations such as applying filter, selecting specific columns, sorting data, adding or deleting columns and aggregating data. Another most important advantage of this package is that it's very easy to learn and use dplyr functions. Also easy to recall these functions. For example, filter() is used to filter rows.<br>
+<div>
+<br>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/dplyr.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/dplyr.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">dplyr Tutorial</td></tr>
+</tbody></table>
+<br></div>
+<div>
+<span style="color: #990000; font-size: x-large;"><b>dplyr vs. Base R Functions</b></span><br>
+<br>
+dplyr functions process faster than base R functions. It is because dplyr functions were written in a computationally efficient manner. They are also more stable in the syntax and better supports data frames than vectors.<br>
+<br>
+<br>
+<div>
+<b><span style="color: #990000; font-size: x-large;">SQL Queries vs. dplyr</span></b></div>
+<div>
+<br></div>
+<div>
+People have been utilizing SQL for analyzing data for decades. Every modern data analysis software such as Python, R, SAS etc supports SQL commands. But SQL was never designed to perform data analysis.&nbsp;It was rather designed for querying and managing data. There are many data analysis operations where SQL fails or makes simple things difficult. For example, calculating median for multiple variables, converting wide format data to long format etc. Whereas, dplyr package was designed to do data analysis.</div>
+<blockquote class="tr_bq">
+The names of dplyr functions are similar to SQL commands such as <b>select()</b> for selecting variables, <b>group_by()</b> - group data by grouping variable, join() - joining two data sets. Also includes <b>inner_join()</b> and <b>left_join()</b>. It also supports sub queries for which SQL was popular for.</blockquote><div id="adsense-content" style="display:block;text-align: center">
+<ins class="adsbygoogle" style="display:inline-block;width:328px;height:280px" data-ad-client="ca-pub-4695912699318711" data-ad-slot="8724635785" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:328px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:328px;background-color:transparent"><iframe width="328" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:328px;height:280px;" src="./dplyr Tutorial (With 50 Examples)_files/saved_resource(1).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<br>
+<b><span style="color: #990000; font-size: x-large;">How to install and load dplyr package</span></b><br>
+<br>
+To install the dplyr package, type the following command.<br>
+<blockquote class="tr_bq">
+install.packages("dplyr")</blockquote>
+</div>
+<div>
+To load dplyr package, type the command below</div>
+<div>
+<blockquote class="tr_bq">
+library(dplyr)&nbsp;</blockquote>
+<b><span style="color: #990000; font-size: x-large;"><br></span></b>
+<b><span style="color: #990000; font-size: x-large;">Important dplyr Functions to remember</span></b><br>
+<br>
+<table class="tg">
+  <tbody>
+<tr>
+    <th class="tg-yw4l">dplyr Function</th>
+    <th class="tg-yw4l">Description</th>
+    <th class="tg-yw4l">Equivalent SQL</th>
+  </tr>
+<tr>
+    <td class="tg-yw4l">select()</td>
+    <td class="tg-yw4l">Selecting columns (variables)</td>
+    <td class="tg-yw4l">SELECT</td>
+  </tr>
+<tr>
+    <td class="tg-yw4l">filter()</td>
+    <td class="tg-yw4l">Filter (subset) rows.</td>
+    <td class="tg-yw4l">WHERE</td>
+  </tr>
+<tr>
+    <td class="tg-yw4l">group_by()</td>
+    <td class="tg-yw4l">Group the data</td>
+    <td class="tg-yw4l">GROUP BY</td>
+  </tr>
+<tr>
+    <td class="tg-yw4l">summarise()</td>
+    <td class="tg-yw4l">Summarise (or aggregate) data</td>
+    <td class="tg-yw4l">-</td>
+  </tr>
+<tr>
+    <td class="tg-yw4l">arrange()</td>
+    <td class="tg-yw4l">Sort the data</td>
+    <td class="tg-yw4l">ORDER BY</td>
+  </tr>
+<tr>
+    <td class="tg-yw4l">join()</td>
+    <td class="tg-yw4l">Joining data frames (tables)</td>
+    <td class="tg-yw4l">JOIN</td>
+  </tr>
+<tr>
+    <td class="tg-yw4l">mutate()</td>
+    <td class="tg-yw4l">Creating New Variables</td>
+    <td class="tg-yw4l">COLUMN ALIAS</td>
+  </tr>
+</tbody></table>
+<br></div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Data : Income Data by States</span></b></div>
+<div>
+<br></div>
+In this tutorial, we are using the following data which contains income generated by states from year 2002 to 2015. <b>Note :</b> This data do not contain actual income figures of the states.<br>
+<br>
+This dataset contains 51 observations (rows) and 16 variables (columns). The snapshot of few rows and columns of the dataset is shown below.<br>
+<div>
+<br>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/sample+data_dplyr.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/sample+data_dplyr.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Input Dataset</td></tr>
+</tbody></table>
+</div>
+<br>
+<span style="font-size: large;"><b><a href="https://sites.google.com/site/pocketecoworld/sampledata.csv" target="_blank">Download the Dataset</a></b></span><br>
+<div>
+<br>
+<div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">How to load Data</span></b></div>
+<div>
+<br></div>
+<div>
+Submit the following code. <i><b>Change the file path in the code below.</b></i></div>
+</div>
+<div>
+<blockquote class="tr_bq">
+mydata = read.csv("C:\\Users\\Deepanshu\\Documents\\sampledata.csv")</blockquote>
+</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 1 : Selecting Random N Rows</span></b><br>
+<br>
+The <b>sample_n </b>function selects random rows from a data frame (or table). The second parameter of the function tells R the number of rows to select.<br>
+<blockquote class="tr_bq">
+sample_n(mydata,3)</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 2 : Selecting Random Fraction of Rows</span></b><br>
+<br>
+The <b>sample_frac </b>function returns randomly N% of rows. In the example below, it returns randomly 10% of rows.<br>
+<blockquote class="tr_bq">
+sample_frac(mydata,0.1)</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 3 : Remove Duplicate Rows based on all the variables (Complete Row)</span></b><br>
+<br>
+The <b>distinct function</b> is used to eliminate duplicates.<br>
+<blockquote class="tr_bq">
+x1 = distinct(mydata)</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 4 : Remove Duplicate Rows based on a variable</span></b><br>
+<br>
+The <b>.keep_all </b>function is used to&nbsp;retain all other variables in the output data frame.<br>
+<blockquote class="tr_bq">
+x2 = distinct(mydata, Index, <b>.keep_all= TRUE</b>)</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 5 : Remove Duplicates Rows based on multiple variables</span></b><br>
+<br>
+In the example below, we are using two variables - <b>Index, Y2010 </b>to determine uniqueness.<br>
+<blockquote class="tr_bq">
+x2 = distinct(mydata, <b>Index</b>, <b>Y2010</b>, .keep_all= TRUE)</blockquote>
+<b><span style="color: #b45f06; font-size: x-large;"><br></span></b>
+<b><span style="color: orange; font-size: x-large;">select( ) Function</span></b><br>
+<br>
+It is used to select only desired variables.<br>
+<blockquote class="tr_bq">
+<b>select() syntax :</b> select(data , ....)<b><br>data :</b> Data Frame<br>
+<b>.... : </b>Variables by name or by function</blockquote>
+</div>
+<div>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 6 : Selecting Variables (or Columns)</span></b><br>
+<br>
+Suppose you are asked to select only a few variables. The code below selects variables "Index", columns from "State" to "Y2008".<br>
+<blockquote class="tr_bq">
+mydata2 = select(mydata, Index, State:Y2008)</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 7 : Dropping Variables</span></b><br>
+<br>
+The <b>minus sign</b> before a variable tells R to drop the variable.<br>
+<blockquote class="tr_bq">
+mydata = select(mydata, -Index, -State)</blockquote>
+The above code can also be written like :<br>
+<blockquote class="tr_bq">
+mydata = select(mydata, -c(Index,State))</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 8 : Selecting or Dropping Variables starts with 'Y'</span></b><br>
+<br>
+The <b>starts_with()</b> function is used to select variables starts with an alphabet.<br>
+<blockquote class="tr_bq">
+mydata3 = select(mydata, starts_with("Y"))</blockquote>
+&nbsp;Adding a negative sign before starts_with() implies dropping the variables starts with 'Y'<br>
+<blockquote class="tr_bq">
+mydata33 = select(mydata, -starts_with("Y"))</blockquote>
+<b><i><span style="font-size: large;">The following functions helps you to <span style="color: #e69138;">select variables based on their names.</span></span></i></b><br>
+<br>
+<table>
+  <tbody>
+<tr>
+    <th>Helpers</th>
+    <th>Description</th>
+  </tr>
+<tr>
+    <td>starts_with()</td>
+    <td>Starts with a prefix</td>
+  </tr>
+<tr>
+    <td>ends_with()</td>
+    <td>Ends with a prefix</td>
+  </tr>
+<tr>
+    <td>contains()</td>
+    <td>Contains a literal string</td>
+  </tr>
+<tr>
+    <td>matches()</td>
+    <td>Matches a regular expression</td>
+  </tr>
+<tr>
+    <td>num_range()</td>
+    <td>Numerical range like x01, x02, x03.</td>
+  </tr>
+<tr>
+    <td>one_of()</td>
+    <td>Variables in character vector.</td>
+  </tr>
+<tr>
+    <td>everything()</td>
+    <td>All variables.</td></tr>
+</tbody></table>
+</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;"><br></span></b></div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 9 : Selecting Variables contain 'I' in their names</span></b></div>
+<div>
+<blockquote class="tr_bq">
+mydata4 = select(mydata, contains("I"))</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 10 : Reorder Variables</span></b><br>
+<br>
+The code below keeps variable<b> 'State' </b>in the front and the remaining variables follow that.<br>
+<blockquote class="tr_bq">
+mydata5 = select(mydata, State, everything())</blockquote>
+<b><span style="color: orange; font-size: x-large;">rename( ) Function</span></b><br>
+<br>
+It is used to change variable name.<br>
+<blockquote class="tr_bq">
+<b>rename() syntax : </b>rename(data , new_name = old_name)<br>
+<b>data :</b> Data Frame<br>
+<b>new_name :</b> New variable name you want to keep<br>
+<b>old_name :</b> Existing Variable Name</blockquote>
+</div>
+<div>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 11 : Rename Variables</span></b><br>
+<br>
+The rename function can be used to rename variables.<br>
+<br>
+In the following code, we are renaming <b>'Index'</b> variable to <b>'Index1'</b>.<br>
+<blockquote class="tr_bq">
+mydata6 = rename(mydata, Index1=Index)</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/rename.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/rename.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<br>
+<b><span style="color: orange; font-size: x-large;">filter( ) Function</span></b><br>
+<br>
+It is used to subset data with matching logical conditions.<br>
+<blockquote class="tr_bq">
+<b>filter() syntax :&nbsp;</b>filter(data , <b>....</b>)<br>
+<b>data :</b>&nbsp;Data Frame<br>
+<b>.... :</b>&nbsp;Logical Condition</blockquote>
+<br>
+<span style="color: #990000; font-size: x-large;"><b>Example 12 : Filter Rows</b></span></div>
+<div>
+<br></div>
+<div>
+Suppose you need to subset data. You want to filter rows and retain only those values in which Index is equal to A.</div>
+<div>
+<blockquote class="tr_bq">
+mydata7 = filter(mydata, Index == "A")</blockquote>
+&nbsp;&nbsp;</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 13 : Multiple Selection Criteria</span></b><br>
+<br>
+The<b> %in%</b> operator can be used to select multiple items. In the following program, we are telling R to select rows against 'A' and 'C' in column 'Index'.<br>
+<blockquote class="tr_bq">
+mydata7 = filter(mydata6, Index %in% c("A", "C"))</blockquote>
+<br>
+<span style="color: #990000;"><b><span style="font-size: x-large;">Example 14 : 'AND' Condition in Selection Criteria</span></b></span><br>
+<br>
+Suppose you need to apply 'AND' condition. In this case, we are picking data for 'A' and 'C' in the column 'Index' and income greater than 1.3 million in Year 2002.<br>
+<blockquote class="tr_bq">
+mydata8 = filter(mydata6, Index %in% c("A", "C") &amp; Y2002 &gt;= 1300000 )</blockquote>
+<br>
+<b style="color: #990000;"><span style="font-size: x-large;">Example 15 : 'OR' Condition in Selection Criteria</span></b></div>
+<div>
+<br></div>
+<div>
+The 'I' denotes OR in the logical condition. It means any of the two conditions.</div>
+<div>
+<blockquote class="tr_bq">
+mydata9 = filter(mydata6, Index %in% c("A", "C") | Y2002 &gt;= 1300000)</blockquote>
+</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 16 : NOT Condition</span></b></div>
+<div>
+<br></div>
+<div>
+The "!" sign is used to reverse the logical condition.</div>
+<div>
+<blockquote class="tr_bq">
+mydata10 = filter(mydata6, !Index %in% c("A", "C"))</blockquote>
+</div>
+<div>
+<br></div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 17 : CONTAINS Condition</span></b></div>
+<br>
+The <b>grepl function</b> is used to search for pattern matching. In the following code, we are looking for records wherein column <b>state</b> contains <b>'Ar'</b> in their name.<br>
+<blockquote class="tr_bq">
+mydata10 = filter(mydata6, grepl("Ar", State))</blockquote>
+<br>
+&nbsp;<b><span style="color: orange; font-size: x-large;">summarise( ) Function</span></b><br>
+<br>
+It is used to summarize data.<br>
+<blockquote class="tr_bq">
+<b>summarise() syntax :&nbsp;</b>summarise(data , <b>....</b>)<br>
+<b>data :</b>&nbsp;Data Frame<br>
+<b>..... :</b>&nbsp;Summary Functions such as mean, median etc</blockquote>
+<b><span style="font-size: large;"><br></span></b>
+<b><span style="color: #990000; font-size: x-large;">Example 18 : Summarize selected variables</span></b><br>
+<br>
+In the example below, we are calculating mean and median for the variable Y2015.<br>
+<blockquote class="tr_bq">
+summarise(mydata, Y2015_mean = mean(Y2015), Y2015_med=median(Y2015))</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/mean_median.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/mean_median.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 19 : Summarize Multiple Variables</span></b><br>
+<br>
+In the following example, we are calculating number of records, mean and median for variables Y2005 and Y2006. The <b>summarise_at </b>function allows us to select multiple variables by their names.<br>
+<blockquote class="tr_bq">
+summarise_at(mydata, vars(Y2005, Y2006), funs(n(), mean, median))</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/multiplevars.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/multiplevars.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<b><span style="color: #990000; font-size: x-large;">Example 20 : Summarize with Custom Functions</span></b><br>
+<div>
+<br></div>
+<div>
+We can also use custom functions in the summarise function. In this case, we are computing the number of records, number of missing values, mean and median for variables Y2011 and Y2012. The <b>dot (.) </b>denotes each variables specified in the second argument of the function.</div>
+<div>
+<div>
+<blockquote class="tr_bq">
+summarise_at(mydata, vars(Y2011, Y2012),<br>
+funs(n(), missing =<b> sum(is.na(.)), mean(., na.rm = TRUE), median(.,na.rm = TRUE)))</b></blockquote>
+</div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/summarise.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/summarise.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Summarize : Output</td></tr>
+</tbody></table>
+<br>
+<b><span style="color: #b45f06; font-size: large;">How to apply Non-Standard Functions</span></b><br>
+<br>
+Suppose you want to subtract mean from its original value and then calculate variance of it.<br>
+<blockquote class="tr_bq">
+set.seed(222)<br>mydata &lt;- data.frame(X1=sample(1:100,100), X2=runif(100))<br>summarise_at(mydata,vars(X1,X2), <b>function(x) var(x - mean(x))</b>)</blockquote>
+<div>
+<div>
+&nbsp; &nbsp; &nbsp; &nbsp; X1 &nbsp; &nbsp; &nbsp; &nbsp; X2</div>
+<div>
+1 841.6667 0.08142161</div>
+</div>
+<br>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 21 : Summarize all Numeric Variables</span></b></div>
+</div>
+<div>
+<br>
+The <b>summarise_if </b>function allows you to summarise conditionally.<br>
+<blockquote class="tr_bq">
+summarise_if(mydata, is.numeric, funs(n(),mean,median))</blockquote>
+</div>
+<div>
+<b><span style="font-size: large;">Alternative Method :</span></b></div>
+<div>
+<br></div>
+<div>
+<b>First, </b>store data for all the numeric variables</div>
+<div>
+<blockquote class="tr_bq">
+numdata = mydata[sapply(mydata,is.numeric)]</blockquote>
+<div>
+<b>Second,</b> the <b>summarise_all </b>function calculates summary statistics for all the columns in a data frame</div>
+<blockquote class="tr_bq">
+summarise_all(numdata, funs(n(),mean,median))</blockquote>
+</div>
+<div>
+<br></div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 22 : Summarize Factor Variable</span></b></div>
+<div>
+<br></div>
+<div>
+We are checking the <b>number of levels/categories</b> and <b>count of missing observations</b> in a categorical (factor) variable.</div>
+<blockquote class="tr_bq">
+summarise_all(mydata["Index"], funs(nlevels(.), sum(is.na(.))))</blockquote>
+<br>
+<div>
+<b><span style="color: orange; font-size: x-large;">arrange() function :</span></b><br>
+<br>
+<span style="font-size: large;"><b>Use :</b>&nbsp;Sort data</span><br>
+<br></div>
+<div>
+<b><span style="font-size: large;">Syntax</span></b></div>
+<blockquote class="tr_bq">
+arrange(data_frame, variable(s)_to_sort)<br>
+<b>or</b><br>
+data_frame&nbsp;<b>%&gt;%</b>&nbsp;arrange(variable(s)_to_sort)</blockquote>
+<div>
+To sort a variable in descending order, use&nbsp;<b>desc(x)</b>.</div>
+<div>
+<br></div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 23 : Sort Data by Multiple Variables</span></b></div>
+<div>
+<br></div>
+<div>
+The default sorting order of&nbsp;<b>arrange() function</b>&nbsp;is ascending. In this example, we are sorting data by multiple variables.</div>
+<blockquote class="tr_bq">
+arrange(mydata, Index, Y2011)</blockquote>
+<div>
+<div>
+Suppose you need to sort one variable by descending order and other variable by ascending oder.</div>
+<blockquote class="tr_bq">
+arrange(mydata,&nbsp;<b>desc(Index)</b>, Y2011)</blockquote>
+</div>
+<b><span style="color: orange; font-size: x-large;">Pipe Operator %&gt;%</span></b><br>
+<br>
+It is important to understand the pipe (%&gt;%) operator before knowing the other functions of dplyr package. dplyr utilizes pipe operator from another package <b>(magrittr)</b>.<br>
+<div>
+<blockquote class="tr_bq">
+It allows you to write sub-queries like we do it in sql.</blockquote>
+<div>
+<b>Note :</b>&nbsp;All the functions in dplyr package can be used <b>without</b> the pipe operator. The question arises <b>"Why to use pipe operator %&gt;%". The answer is </b>it lets&nbsp;to&nbsp;wrap multiple functions together with the use of &nbsp;%&gt;%.</div>
+<div>
+<b><span style="font-size: large;"><br></span></b></div>
+<div>
+<b><span style="font-size: large;">Syntax :</span></b></div>
+<div>
+<blockquote class="tr_bq">
+filter(data_frame, variable == value)<br>
+<b>or</b><br>
+data_frame <b>%&gt;%</b> filter(variable == value)</blockquote>
+<b><i><span style="color: purple;">The %&gt;% is NOT restricted to filter function. It can be used with any function.&nbsp;</span></i></b></div>
+<div>
+<b><span style="font-size: large;"><br></span></b></div>
+<div>
+<b><span style="font-size: large;">Example :</span></b></div>
+<div>
+<br></div>
+<div>
+The code below demonstrates the usage of pipe %&gt;% operator. In this example, we are selecting 10 random observations of two variables "Index" "State" from the data frame "mydata".</div>
+<blockquote class="tr_bq">
+dt = sample_n(select(mydata, Index, State),10)<br>
+<b>or&nbsp;</b><br>
+dt = mydata <b>%&gt;%</b> select(Index, State) <b>%&gt;%</b> sample_n(10)</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/pipe+operator.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/pipe+operator.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<div>
+<br></div>
+<div>
+<b><span style="color: orange; font-size: x-large;">group_by() function :</span></b></div>
+<div>
+<br></div>
+<div>
+<span style="font-size: large;"><b>Use :&nbsp;</b>Group data by categorical variable</span></div>
+<div>
+<div>
+<br></div>
+<div>
+<b><span style="font-size: large;">Syntax :</span></b></div>
+<blockquote class="tr_bq">
+group_by(data, variables)<br>
+<b>or</b><br>
+data %&gt;% group_by(variables)</blockquote>
+</div>
+<div>
+<br></div>
+<div>
+<span style="color: #990000; font-size: x-large;"><b>Example 24 : Summarise Data by Categorical Variable</b></span></div>
+<div>
+<br></div>
+<div>
+We are calculating count and mean of variables Y2011 and Y2012 by variable Index.</div>
+<div>
+<blockquote class="tr_bq">
+t = summarise_at(group_by(mydata, Index), vars(Y2011, Y2012), funs(n(), mean(., na.rm = TRUE)))</blockquote>
+<div>
+The above code can also be written like</div>
+<div>
+<blockquote class="tr_bq">
+t = mydata %&gt;% group_by(Index) %&gt;%<br>
+&nbsp; summarise_at(vars(Y2011:Y2015), funs(n(), mean(., na.rm = TRUE)))</blockquote>
+<br>
+<div>
+<b><span style="color: orange; font-size: x-large;">do() function :</span></b></div>
+<div>
+<span style="font-size: large;"><b><br></b></span></div>
+<div>
+<div>
+<span style="font-size: large;"><b>Use :</b> Compute within groups</span></div>
+<div>
+<br></div>
+</div>
+<div>
+<b><span style="font-size: large;">Syntax :</span></b></div>
+<blockquote class="tr_bq">
+do(data_frame, expressions_to_apply_to_each_group)</blockquote>
+<b>Note : </b><i>The <b>dot (.) </b>is required to refer to a data frame.</i><br>
+<br>
+<div>
+<div>
+<span style="color: #990000; font-size: x-large;"><b>Example 25 : Filter Data within a Categorical Variable</b></span></div>
+</div>
+<div>
+<br></div>
+<div>
+Suppose you need to pull top 2 rows from 'A', 'C' and 'I' categories of variable Index.&nbsp;</div>
+<div>
+<blockquote class="tr_bq">
+t = mydata %&gt;% filter(Index %in% c("A", "C","I")) %&gt;% <b>group_by(Index) </b>%&gt;%<br>
+&nbsp;<b> do(head( . , 2))</b></blockquote>
+</div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/do+operation.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/do+operation.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output : do() function</td></tr>
+</tbody></table>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 26 : Selecting 3rd Maximum Value by Categorical Variable</span></b><br>
+<br>
+We are calculating third maximum value of variable Y2015 by variable Index. The following code first selects only two variables Index and Y2015. Then it filters the variable Index with 'A', 'C' and 'I' and then it groups the same variable and sorts the variable Y2015 in descending order. At last, it selects the third row.<br>
+<blockquote class="tr_bq">
+t = mydata %&gt;% select(Index, Y2015) %&gt;%<br>
+&nbsp; filter(Index %in% c("A", "C","I")) %&gt;%<br>
+&nbsp; group_by(Index) %&gt;%<br>
+&nbsp; <b>do(arrange(.,desc(Y2015))) %&gt;%</b>&nbsp; slice(3)</blockquote>
+<div>
+<div>
+<span style="font-size: large;">The <b>slice() function</b> is used to select rows by position.</span></div>
+</div>
+<div>
+<br></div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/rank+function.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/rank+function.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<b><span style="color: #990000; font-size: x-large;">Using Window Functions</span></b><br>
+<br>
+Like SQL, dplyr uses window functions that are used to subset data within a group. It returns a vector of values. We could use <b>min_rank() function</b> that calculates rank in the preceding example,<br>
+<blockquote class="tr_bq">
+t = mydata %&gt;% select(Index, Y2015) %&gt;%<br>
+&nbsp; filter(Index %in% c("A", "C","I")) %&gt;%<br>
+&nbsp; group_by(Index) %&gt;%<br>
+&nbsp; filter(<b>min_rank</b>(desc(Y2015)) == 3)</blockquote>
+</div>
+<div>
+</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 27 : Summarize, Group and Sort Together</span></b>&nbsp;</div>
+<div>
+<br></div>
+<div>
+In this case, we are computing mean of variables Y2014 and Y2015 by variable Index. Then sort the result by calculated mean variable Y2015.</div>
+<div>
+<blockquote class="tr_bq">
+t = mydata %&gt;%<br>
+&nbsp; group_by(Index)%&gt;%<br>
+&nbsp; summarise(Mean_2014 = mean(Y2014, na.rm=TRUE),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Mean_2015 = mean(Y2015, na.rm=TRUE)) %&gt;%<br>
+&nbsp; arrange(desc(Mean_2015))</blockquote>
+<br>
+<b><span style="color: orange; font-size: x-large;">mutate() function :</span></b><br>
+<div>
+<span style="font-size: large;"><b><br></b></span></div>
+<div>
+<div>
+<span style="font-size: large;"><b>Use :</b>&nbsp;Creates new variables</span></div>
+<div>
+<br></div>
+</div>
+<div>
+<b><span style="font-size: large;">Syntax :</span></b></div>
+</div>
+</div>
+</div>
+<blockquote class="tr_bq">
+mutate(data_frame, expression(s) )<br>
+<b>or</b><br>
+data_frame %&gt;% mutate(expression(s))                </blockquote>
+<div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 28 : Create a new variable</span></b></div>
+</div>
+<div>
+<br></div>
+<div>
+The following code calculates division of Y2015 by Y2014 and name it "change".</div>
+<div>
+<blockquote class="tr_bq">
+mydata1 = mutate(mydata, change=Y2015/Y2014)</blockquote>
+</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 29 : Multiply all the variables by 1000</span></b></div>
+<div>
+<br></div>
+<div>
+It creates new variables and name them with suffix "_new".</div>
+<div>
+<blockquote class="tr_bq">
+mydata11 = mutate_all(mydata, funs("new" = .* 1000))</blockquote>
+</div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/mutate.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/mutate.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<div>
+The output shown in the image above is truncated due to high number of variables.<br>
+<b><br></b>
+<b><span style="color: blue;">Note - </span></b>The above code returns the following error messages -<br>
+<br>
+<b>Warning messages:</b><br>
+1: In Ops.factor(c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 3L, 3L, 4L, 5L, 6L, &nbsp;:<br>
+&nbsp; ‘*’ not meaningful for factors<br>
+2: In Ops.factor(1:51, 1000) : ‘*’ not meaningful for factors<br>
+<br>
+It implies you are multiplying 1000 to string(character) values which are stored as factor variables. These variables are 'Index', 'State'. It does not make sense to apply multiplication operation on character variables. For these two variables, it creates newly created variables which contain only NA.<br>
+<b><br></b>
+<span style="font-size: large;"><span style="color: purple;"><b><span style="color: blue;">Solution :</span></b><b style="color: blue;"> </b></span><span style="color: #444444;">See </span><b>Example 45</b> -<span style="color: #444444;">&nbsp;</span></span><span style="font-size: large;">Apply multiplication on only numeric variables</span></div>
+<div>
+<br></div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 30 : Calculate Rank for Variables</span></b><br>
+<br>
+Suppose you need to calculate rank for variables Y2008 to Y2010.<br>
+<blockquote class="tr_bq">
+mydata12 = mutate_at(mydata, vars(Y2008:Y2010), funs(Rank=min_rank(.)))</blockquote>
+</div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/rank+mutate.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/rank+mutate.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<div>
+By default, <b>min_rank()</b> assigns 1 to the smallest value and high number to the largest value. In case, you need to assign rank 1 to the largest value of a variable, use <b>min_rank(desc(.))</b><br>
+<blockquote class="tr_bq">
+mydata13 = mutate_at(mydata, vars(Y2008:Y2010), funs(Rank=min_rank(desc(.))))</blockquote>
+</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 31 : Select State that generated highest income among the variable 'Index'</span></b></div>
+<blockquote class="tr_bq">
+out = mydata %&gt;% group_by(Index) %&gt;% filter(min_rank(desc(Y2015)) == 1) %&gt;%<br>
+&nbsp; select(Index, Y2015)</blockquote>
+<br>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 32 : Cumulative Income of 'Index' variable</span></b></div>
+<br>
+&nbsp;The <b>cumsum function </b>calculates cumulative sum of a variable. With <b>mutate function, </b>we insert a new variable called 'Total' which contains values of cumulative income of variable Index.<br>
+<blockquote class="tr_bq">
+out2 = mydata %&gt;% group_by(Index) %&gt;% mutate(Total=<b>cumsum</b>(Y2015)) %&gt;%<br>
+select(Index, Y2015, Total)</blockquote>
+<div>
+<br></div>
+<div>
+<b><span style="color: orange; font-size: x-large;">join() function :</span></b><br>
+<div>
+<br></div>
+<div>
+<span style="font-size: large;"><b>Use : </b>Join two datasets</span></div>
+<div>
+<span style="font-size: large;"><b><br></b></span></div>
+<div>
+<span style="font-size: large;"><b>Syntax :</b></span></div>
+<div>
+<blockquote class="tr_bq">
+inner_join(x, y, by = )<br>
+left_join(x, y, by = )<br>
+right_join(x, y, by = )<br>
+full_join(x, y, by = )<br>
+semi_join(x, y, by = )<br>
+anti_join(x, y, by = )</blockquote>
+<b>x, y -</b> datasets (or tables) to merge / join<br>
+<b>by -</b> common variable (primary key) to join by.<br>
+<b><span style="font-size: x-large;"><br></span></b>
+<b><span style="color: #990000; font-size: x-large;">Example 33 : Common rows in both the tables</span></b><br>
+<br>
+Let's create two data frames say df1 and df2.<br>
+<blockquote class="tr_bq">
+df1 &lt;- data.frame(ID = c(1, 2, 3, 4, 5),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; w = c('a', 'b', 'c', 'd', 'e'),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; x = c(1, 1, 0, 0, 1),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; y=rnorm(5),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; z=letters[1:5])</blockquote>
+<blockquote class="tr_bq">
+df2 &lt;- data.frame(ID = c(1, 7, 3, 6, 8),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a = c('z', 'b', 'k', 'd', 'l'),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b = c(1, 2, 3, 0, 4),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c =rnorm(5),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d =letters[2:6])</blockquote>
+<br>
+<b>INNER JOIN </b>returns rows when there is a match in both tables. In this example, we are merging df1 and df2 with ID as common variable (primary key).<br>
+<blockquote class="tr_bq">
+df3 = inner_join(df1, df2, by = "ID")</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/common+var.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/common+var.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;"><span style="text-align: left;">Output : INNER JOIN&nbsp;</span></td></tr>
+</tbody></table>
+<div>
+If the primary key does not have same name in both the tables, try the following way:</div>
+</div>
+<div>
+<blockquote class="tr_bq">
+inner_join(df1, df2, by = c("ID"="ID1"))</blockquote>
+</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 34 : Applying LEFT JOIN</span></b></div>
+<div>
+<br></div>
+<b>LEFT JOIN :</b> It returns all rows from the left table, even if there are no matches in the right table.</div>
+<blockquote class="tr_bq">
+left_join(df1, df2, by = "ID")</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/left+join.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/left+join.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output : LEFT JOIN</td></tr>
+</tbody></table>
+<b><span style="color: orange; font-size: x-large;"><br>Combine Data Vertically</span></b><br>
+<div>
+<br></div>
+<div>
+<b><span style="font-size: large;">intersect(x, y)</span></b></div>
+<div>
+Rows that appear in both x and y.<br>
+<br>
+<b><span style="font-size: large;">union(x, y)</span></b><br>
+Rows that appear in either or both x and y.<br>
+<br>
+<b><span style="font-size: large;">setdiff(x, y)</span></b><br>
+Rows that appear in x but not y.<br>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 35 : Applying INTERSECT</span></b><br>
+<b><br></b>
+<b>Prepare Sample Data for Demonstration</b><br>
+<blockquote class="tr_bq">
+mtcars$model &lt;- rownames(mtcars)<br>
+first &lt;- mtcars[1:20, ]<br>
+second &lt;- mtcars[10:32, ]</blockquote>
+<b>INTERSECT </b>selects unique rows that are common to both the data frames.<br>
+<blockquote class="tr_bq">
+intersect(first, second)</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 36 : Applying UNION</span></b></div>
+<div>
+<div>
+<br></div>
+<div>
+<b>UNION </b>displays all rows from both the tables and removes duplicate records from the combined dataset. By using <b>union_all&nbsp;function</b>, it allows duplicate rows in the combined dataset.<br>
+<blockquote class="tr_bq">
+x=data.frame(ID = 1:6, ID1= 1:6)<br>
+y=data.frame(ID = 1:6, &nbsp;ID1 = 1:6)<br>
+union(x,y)<br>
+union_all(x,y)</blockquote>
+<br></div>
+</div>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 37 : Rows appear in one table but not in other table</span></b></div>
+<blockquote class="tr_bq">
+setdiff(first, second)</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 38 : IF ELSE Statement</span></b><br>
+<b><span style="font-size: large;"><br></span></b>
+
+<b><span style="font-size: large;">Syntax :</span></b><br>
+<blockquote class="tr_bq">
+if_else(condition, true, false, missing = NULL)</blockquote>
+true &nbsp;: Value if condition meets<br>
+false : Value if condition does not meet<br>
+<div>
+missing : Value if missing cases.It will be used to replace missing values (Default : NULL)</div>
+<div>
+<blockquote class="tr_bq">
+df &lt;- c(-10,2, NA)<br>
+if_else(df &lt; 0, "negative", "positive", missing = "missing value")</blockquote>
+</div>
+<div>
+<b><span style="font-size: large;">Create a new variable with IF_ELSE</span></b><br>
+<br>
+If a value is less than 5, add it to 1 and if it is greater than or equal to 5, add it to 2. Otherwise 0.<br>
+<blockquote class="tr_bq">
+df =data.frame(x = c(1,5,6,NA))<br>
+df %&gt;% mutate(<b>newvar=if_else</b>(x&lt;5, x+1, x+2,0))</blockquote>
+</div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/ifelse.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/ifelse.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Nested IF ELSE</span></b><br>
+<br>
+Multiple IF ELSE statement can be written using if_else() function. See the example below -<br>
+<div>
+<blockquote class="tr_bq">
+mydf =data.frame(x = c(1:5,NA))<br>
+mydf %&gt;% mutate(newvar= <b>if_else</b>(is.na(x),"I am missing",<br>
+if_else(x==1,"I am one",<br>
+if_else(x==2,"I am two",<br>
+if_else(x==3,"I am three","Others")))))</blockquote>
+<b><span style="font-size: large;">Output</span></b><br>
+x &nbsp; &nbsp; &nbsp; newvar<br>
+1 &nbsp; &nbsp; I am one<br>
+2 &nbsp; &nbsp; I am two<br>
+3 &nbsp; I am three<br>
+4 &nbsp; &nbsp; &nbsp; Others<br>
+5 &nbsp; &nbsp; &nbsp; Others<br>
+NA I am missing<br>
+<b><span style="color: #990000; font-size: large;"><br></span></b>
+<b><span style="color: #990000; font-size: large;">SQL-Style CASE WHEN Statement</span></b><br>
+<br>
+We can use <b>case_when()</b> function to write nested if-else queries. In case_when(), you cannot use variables directly within case_when() wrapper so it should be written like <b>.$x</b> which is equivalent to <b>mydf$x</b>. <b>TRUE </b>refers to ELSE statement.</div>
+<blockquote class="tr_bq">
+mydf %&gt;% mutate(flag = <b>case_when</b>(is.na(.$x) ~ "I am missing",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .$x == 1 ~ "I am one",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .$x == 2 ~ "I am two",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .$x == 3 ~ "I am three",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TRUE ~ "Others"))</blockquote>
+<br>
+<b><span style="color: blue; font-size: large;">Important Point</span></b><br>
+<blockquote class="tr_bq">
+Make sure you set <b>is.na()</b> condition at the beginning in nested ifelse. Otherwise, it would not be executed.</blockquote>
+<br>
+<br>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 39 : &nbsp;Apply ROW WISE Operation&nbsp;</span></b></div>
+<div>
+<br></div>
+<div>
+Suppose you want to find maximum value in each row of variables 2012, 2013, 2014, 2015. The <b>rowwise()</b> function allows you to apply functions to rows.</div>
+<blockquote class="tr_bq">
+df = mydata %&gt;%<br>
+&nbsp; <b>rowwise() </b>%&gt;% mutate(Max= max(Y2012:Y2015)) %&gt;%<br>
+&nbsp; select(Y2012:Y2015,Max)</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/rowwise.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/rowwise.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output</td></tr>
+</tbody></table>
+<div>
+<b><span style="color: #990000; font-size: x-large;">Example 40 : Combine Data Frames</span></b></div>
+<div>
+<br></div>
+<div>
+Suppose you are asked to combine two data frames. Let's first create two sample datasets.</div>
+<div>
+<blockquote class="tr_bq">
+df1=data.frame(ID = 1:6, &nbsp;x=letters[1:6])<br>
+df2=data.frame(ID = 7:12, x=letters[7:12])</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/dfs.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/dfs.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Input Datasets</td></tr>
+</tbody></table>
+The <b>bind_rows() function</b> combine two datasets with rows. So combined dataset would contain&nbsp;<b>12 rows (6+6) and 2 columns.</b><br>
+<blockquote class="tr_bq">
+xy = bind_rows(df1,df2)</blockquote>
+</div>
+<div>
+It is equivalent to base R function rbind.</div>
+<blockquote class="tr_bq">
+xy = rbind(df1,df2)</blockquote>
+<div>
+The&nbsp;<b>bind_cols() function</b>&nbsp;combine two datasets with columns. So combined dataset would contain <b>4 columns and 6 rows.</b><br>
+<blockquote class="tr_bq">
+xy = bind_cols(x,y)<br>
+<b>or</b><br>
+xy = cbind(x,y)</blockquote>
+The output is shown below-<br>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/cbind.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/cbind.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">cbind Output</td></tr>
+</tbody></table>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 41 : Calculate Percentile Values</span></b><br>
+<div>
+<br></div>
+<div>
+The <b>quantile()</b> function is used to determine Nth percentile value. In this example, we are computing percentile values by variable Index.</div>
+<div>
+<blockquote class="tr_bq">
+mydata %&gt;% group_by(Index) %&gt;%<br>
+&nbsp; summarise(Pecentile_25=<b>quantile(Y2015, probs=0.25)</b>,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pecentile_50=quantile(Y2015, probs=0.5),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pecentile_75=quantile(Y2015, probs=0.75),<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pecentile_99=quantile(Y2015, probs=0.99))</blockquote>
+</div>
+<div>
+<br></div>
+<div>
+<div>
+The <b>ntile() </b>function is used to divide the data into N bins.</div>
+<blockquote class="tr_bq">
+x= data.frame(N= 1:10)<br>
+x = mutate(x, pos = ntile(x$N,5))</blockquote>
+</div>
+<div>
+<br></div>
+<b><span style="color: #990000; font-size: x-large;">Example 42 : Automate Model Building</span></b><br>
+<br>
+This example explains the advanced usage of <b>do() function</b>. In this example, we are building linear regression model for each level of a categorical variable. There are 3 levels in variable cyl of dataset mtcars.<br>
+<blockquote class="tr_bq">
+length(unique(mtcars$cyl))</blockquote>
+<b>Result : 3</b><br>
+<blockquote class="tr_bq">
+by_cyl &lt;- <b>group_by</b>(mtcars, cyl)<br>
+models &lt;- by_cyl %&gt;% <b>do</b>(mod = lm(mpg ~ disp, data = .))<br>
+summarise(models, rsq = summary(mod)$r.squared)<br>
+models %&gt;% <b>do</b>(data.frame(<br>
+&nbsp; var = names(coef(.$mod)),<br>
+&nbsp; coef(summary(.$mod)))<br>
+)</blockquote>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="./dplyr Tutorial (With 50 Examples)_files/rsquare.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="./dplyr Tutorial (With 50 Examples)_files/rsquare.png"></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Output : R-Squared Values</td></tr>
+</tbody></table>
+<br>
+<b><span style="color: orange; font-size: x-large;">if() Family of Functions</span></b><br>
+<br>
+It includes functions like select_if, mutate_if, summarise_if. They come into action only when logical condition meets. See examples below.<br>
+<br>
+<b><span style="color: #990000;"><span style="font-size: x-large;">Example 43 : Select only numeric columns</span></span></b></div>
+<div>
+<br></div>
+<div>
+The <b>select_if()</b> function returns only those columns where logical condition is TRUE. The <b>is.numeric </b>refers to retain only numeric variables.</div>
+<div>
+<blockquote class="tr_bq">
+mydata2 = <b>select_if</b>(mydata, is.numeric)</blockquote>
+<div>
+Similarly, you can use the following code for selecting factor columns -&nbsp;</div>
+<blockquote class="tr_bq">
+mydata3 = select_if(mydata, is.factor)</blockquote>
+<br>
+<span style="color: #990000; font-size: x-large;"><b>Example 44 : Number of levels in factor variables</b></span></div>
+<div>
+<br></div>
+<div>
+Like select_if() function, summarise_if() function lets you to summarise only for variables where logical condition holds.</div>
+<div>
+<blockquote class="tr_bq">
+<b>summarise_if</b>(mydata, is.factor, funs(nlevels(.)))</blockquote>
+<div>
+It returns 19 levels for variable Index and 51 levels for variable State.</div>
+<b><span style="color: #990000; font-size: x-large;"><br>Example 45 : Multiply by 1000 to numeric variables</span></b><br>
+<blockquote class="tr_bq">
+mydata11 = <b>mutate_if</b>(mydata, is.numeric, funs("new" = .* 1000))</blockquote>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Example 46 : Convert value to NA</span></b><br>
+<br>
+In this example, we are converting "" to NA using <b>na_if()</b> function.<br>
+<blockquote class="tr_bq">
+k &lt;- c("a", "b", "", "d")<br>
+<b>na_if</b>(k, "")</blockquote>
+<b>Result :</b> "a" "b" NA &nbsp;"d"<br>
+<br>
+<b><span style="color: #990000; font-size: x-large;">Endnotes</span></b><br>
+<br>
+There are hundreds of packages that are dependent on this package. The main benefit it offers is to take off fear of R programming and make coding effortless and lower processing time. However, some R programmers prefer <b><a href="http://www.listendata.com/2016/10/r-data-table.html" target="_blank">data.table</a></b> package for its speed. I would recommend learn both the packages. Check out <a href="http://www.listendata.com/2016/10/r-data-table.html" target="_blank"><b>data.table tutorial</b></a>. The data.table package wins over dplyr in terms of speed if data size greater than 1 GB.</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+function insertAfter(addition,target) {
+var parent = target.parentNode;
+if (parent.lastChild == target) {
+parent.appendChild(addition); 
+} else {
+parent.insertBefore(addition,target.nextSibling);
+}
+}
+var adscont = document.getElementById("adsense-content");
+var target = document.getElementById("adsense-target");
+var linebreak = target.getElementsByTagName("blockquote");
+if (linebreak.length > 0){
+insertAfter(adscont,linebreak[0]);
+}
+</script>
+<div itemprop="publisher" itemscope="itemscope" itemtype="https://schema.org/Organization">
+<div itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject">
+<img src="./dplyr Tutorial (With 50 Examples)_files/listendata-logo.png" style="display:none;">
+<meta content="http://www.indiataxconsultant.com/wp-content/uploads/2016/12/listendata-logo.png" itemprop="url">
+<meta content="309" itemprop="width">
+<meta content="95" itemprop="height">
+</div>
+<meta content="Listen Data" itemprop="name">
+</div>
+<div class="affiliate-box">
+<h4 style="text-align: left;">
+<b><span style="color: #666666;">Top Certification:</span></b>
+<a target="new" href="https://click.linksynergy.com/link?id=s6ZPVtCdfxI&amp;offerid=323058.765242&amp;type=2&amp;murl=https%3A%2F%2Fwww.udemy.com%2Fr-programming%2F">Practical R Programming with Real Exercises!</a><img border="0" width="1" height="1" src="./dplyr Tutorial (With 50 Examples)_files/show">
+</h4>
+</div>
+
+
+<!-- Experiment -->
+<div id="adsense-content" style="display:block;text-align: center">
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-4695912699318711" data-ad-slot="2904501385" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;width:336px;height:280px;" src="./dplyr Tutorial (With 50 Examples)_files/saved_resource(2).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
+<br>
+<h4><b>R Tutorials : </b>
+<b><a href="http://www.listendata.com/p/r-programming-tutorials.html">75 Free R Tutorials</a></b></h4>
+<div class="share-buttons-box">
+<h3>It’s Your Turn!</h3>
+<i>If you want me to keep writing this site, please post your feedback in the comment box below. While I love having friends who agree, I only learn from those who don't. <b>To hire me for services, you may contact me at deepanshu.bhalla@outlook.com OR <a href="https://www.linkedin.com/in/deepanshubhalla" target="_blank">Join me on linkedin</a></b></i>
+</div>
+<form action="http://feedburner.google.com/fb/a/mailverify" method="post" onsubmit="window.open(&#39;http://feedburner.google.com/fb/a/mailverify?uri=listendata&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=550,height=520&#39;);return true" style="border:1px solid #DDD;padding:3px;text-align:center;background:#F1F1F1;" target="popupwindow"><span style="margin:0 auto; padding-left:24px; position:relative;background: url(http://3.bp.blogspot.com/_b0xJ7qk6DTc/TEg2iHmUivI/AAAAAAAAAu0/j9tIV5fjTXw/s1600/myrss.gif) right center no-repeat;"></span><font color="#BA0000" size="4">Get Free Email Updates : </font>
+<input name="email" onblur="if (this.value == &quot;&quot;) {this.value = &quot;Enter your email address&quot;;}" onfocus="if (this.value == &quot;Enter your email address&quot;) {this.value = &quot;&quot;}" style="width:200px;height:25px; background: #fFF url(http://1.bp.blogspot.com/_b0xJ7qk6DTc/TInWwRjgSUI/AAAAAAAABC0/DWQZc1mUvaU/s1600/new-email.png) left no-repeat;padding: 1px 0px 1px 24px;border: 1px solid #8cafe3;" type="text" value="Enter your email address">
+<input name="uri" type="hidden" value="listendata"><input name="loc" type="hidden" value="en_US"><input style="background-color: #E95D22; border-radius: 0px 5px 5px 0px; border: medium none; border: rgba(0, 0, 0, 0.1); color: white; font-family: georgia; font-size: 14px; font-weight: bold; height: 30px; left: 2px; margin-left: -5px; padding: 2px 10px; position: relative; " type="submit" value="Submit">
+<center><i>*Please confirm your email address by clicking on the link sent to your Email*</i></center>
+</form>
+<div id="related-post">
+<h3>Related Posts:</h3>
+<script src="./dplyr Tutorial (With 50 Examples)_files/dplyr" type="text/javascript"></script>
+<script src="./dplyr Tutorial (With 50 Examples)_files/R Tutorial" type="text/javascript"></script>
+<script type="text/javascript">removeRelatedDuplicates();printRelatedLabels();</script><ul><li><a href="http://www.listendata.com/2017/03/if-else-in-r.html">R : If Else and Nested If Else</a></li><li><a href="http://www.listendata.com/2017/01/support-vector-machine-in-r-tutorial.html">Support Vector Machine Simplified using R</a></li><li><a href="http://www.listendata.com/2016/12/companies-using-r.html">Companies using R</a></li><li><a href="http://www.listendata.com/2016/08/dplyr-tutorial.html">dplyr Tutorial (With 50 Examples)</a></li><li><a href="http://www.listendata.com/2017/04/how-to-integrate-r-with-php.html">How to Integrate R with PHP</a></li><li><a href="http://www.listendata.com/2017/03/facebook-data-mining-using-r.html">Facebook Data Mining using R</a></li></ul>
+</div>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h3>
+17 Responses to "dplyr Tutorial (With 50 Examples)" </h3>
+<div class="comments-content">
+<script async="async" src="./dplyr Tutorial (With 50 Examples)_files/comments.js.download" type="text/javascript"></script>
+<script type="text/javascript">(function(){var m=[{'id': '5488152492608569956', 'body': 'Thanks for share, great stuff and examples. ', 'timestamp': '1471830453545', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1471830453545#c5488152492608569956', 'author': {'name': 'Sergio Uribe', 'avatarUrl': '//lh3.googleusercontent.com/-KMPLbMh0qqk/AAAAAAAAAAI/AAAAAAAAXyg/Bv4RcJONmNs/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/14226294873361062770'}, 'displayTime': '21 August 2016 at 18:47', 'deleteclass': 'item-control blog-admin pid-2024164576'}, {'id': '8066970921186712762', 'parentId': '5488152492608569956', 'body': 'Thank you for stopping by my blog!', 'timestamp': '1472923736668', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1472923736668#c8066970921186712762', 'author': {'name': 'Deepanshu Bhalla', 'avatarUrl': '//lh3.googleusercontent.com/-m-IN-WRLAdU/AAAAAAAAAAI/AAAAAAAAES0/KyMVqj64uyo/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/09802839558125192674'}, 'displayTime': '3 September 2016 at 10:28', 'deleteclass': 'item-control blog-admin pid-966036103'}, {'id': '5601911273877651032', 'body': 'This is the best tutorial out there', 'timestamp': '1473936462965', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1473936462965#c5601911273877651032', 'author': {'name': 'Unknown', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/03326642000078446592'}, 'displayTime': '15 September 2016 at 03:47', 'deleteclass': 'item-control blog-admin pid-1230090079'}, {'id': '6287173114506451487', 'body': 'excellent!\x3cbr /\x3e\x3cbr /\x3ethx\x3cbr /\x3e\x3cbr /\x3eZ', 'timestamp': '1474033910308', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1474033910308#c6287173114506451487', 'author': {'name': 'zeltak', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/03770396389827674828'}, 'displayTime': '16 September 2016 at 06:51', 'deleteclass': 'item-control blog-admin pid-607240177'}, {'id': '4153682443252283288', 'body': 'Thank you, this is very helpful. ', 'timestamp': '1477098156677', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1477098156677#c4153682443252283288', 'author': {'name': 'Michael Reinhard', 'avatarUrl': '//3.bp.blogspot.com/-mzUUCtFaTKA/VkTTtMBY36I/AAAAAAAAQ-M/0AEk-aL9REA/s35/DSCN3479.JPG', 'profileUrl': 'https://www.blogger.com/profile/12053505195335230686'}, 'displayTime': '21 October 2016 at 18:02', 'deleteclass': 'item-control blog-admin pid-1366512819'}, {'id': '4519174106410069795', 'body': 'Having searched many sites and lectures I am bookmarking your site after looking at this page.  Its the simplicity of your presentation.  Thanks.', 'timestamp': '1481255276016', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1481255276016#c4519174106410069795', 'author': {'name': 'Bhail', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/02293211762062073409'}, 'displayTime': '8 December 2016 at 19:47', 'deleteclass': 'item-control blog-admin pid-1952161935'}, {'id': '2417519568159335348', 'parentId': '4519174106410069795', 'body': 'Thank you for stopping by my blog. Glad you found it useful. Cheers! ', 'timestamp': '1481258004741', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1481258004741#c2417519568159335348', 'author': {'name': 'Deepanshu Bhalla', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/04301769767832902721'}, 'displayTime': '8 December 2016 at 20:33', 'deleteclass': 'item-control blog-admin pid-1831769651'}, {'id': '811861459163152430', 'body': 'Thank you, this indeed very helpful and precise. Great Job!', 'timestamp': '1486441553442', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1486441553442#c811861459163152430', 'author': {'name': 'Ravi Gupta', 'avatarUrl': '//lh4.googleusercontent.com/-LC-1EnCyxSw/AAAAAAAAAAI/AAAAAAAABos/_2ycv3FWTAg/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/12278362347915338818'}, 'displayTime': '6 February 2017 at 20:25', 'deleteclass': 'item-control blog-admin pid-207380784'}, {'id': '4675995991866100430', 'body': 'I followed along your script step by step and got a warning message \x3cbr /\x3ein Example 29 : Multiply all the variables by 1000 as follows:\x3cbr /\x3e1: In Ops.factor(c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 3L, 3L, 4L, 5L, 6L,  :\x3cbr /\x3e  &#8216;*&#8217; not meaningful for factors\x3cbr /\x3e2: In Ops.factor(1:51, 1000) : &#8216;*&#8217; not meaningful for factors\x3cbr /\x3eWhat did it mean? Could you please give me some explanation. Thanks.', 'timestamp': '1488509071102', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1488509071102#c4675995991866100430', 'author': {'name': 'Julian Chen', 'avatarUrl': '//lh3.googleusercontent.com/-8ScezAzysIo/AAAAAAAAAAI/AAAAAAAAAAA/sWC_CpMS1fE/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/16496933391210351227'}, 'displayTime': '2 March 2017 at 18:44', 'deleteclass': 'item-control blog-admin pid-502349167'}, {'id': '7944223762747497362', 'parentId': '811861459163152430', 'body': 'Thank you for your appreciation!', 'timestamp': '1488563677850', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1488563677850#c7944223762747497362', 'author': {'name': 'Deepanshu Bhalla', 'avatarUrl': '//lh3.googleusercontent.com/-m-IN-WRLAdU/AAAAAAAAAAI/AAAAAAAAES0/KyMVqj64uyo/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/09802839558125192674'}, 'displayTime': '3 March 2017 at 09:54', 'deleteclass': 'item-control blog-admin pid-966036103'}, {'id': '5151320142747841371', 'parentId': '4675995991866100430', 'body': 'This error says \x26#39;multiplying 1000 on factor(string) variables\x26#39; does not make sense. Run this command - str(mydata[,1:2])\x3cbr /\x3eFirst two variables in the dataframe mydata are strings that are stored as factor variables.', 'timestamp': '1488564080411', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1488564080411#c5151320142747841371', 'author': {'name': 'Deepanshu Bhalla', 'avatarUrl': '//lh3.googleusercontent.com/-m-IN-WRLAdU/AAAAAAAAAAI/AAAAAAAAES0/KyMVqj64uyo/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/09802839558125192674'}, 'displayTime': '3 March 2017 at 10:01', 'deleteclass': 'item-control blog-admin pid-966036103'}, {'id': '90120943294702943', 'body': 'Example#22 - gives incorrect number of levels as 0 - fix is below\x3cbr /\x3eWhy doesn\x26#39;t nlevels() work?\x3cbr /\x3e            \x3cbr /\x3e\x26gt; summarise_all(dt[\x26quot;Index\x26quot;], funs(nlevels(.), sum(is.na(.))))\x3cbr /\x3e# A tibble: 1 &#215; 2\x3cbr /\x3e  nlevels   sum\x3cbr /\x3e     \x3cbr /\x3e1       0     0\x3cbr /\x3e\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3d\x3cbr /\x3eThe fix is change nlevels() to length(unique(.)) as below\x3cbr /\x3e\x3cbr /\x3esummarise_all(dt[\x26quot;Index\x26quot;], funs(length(unique(.)), sum(is.na(.))))\x3cbr /\x3e# A tibble: 1 &#215; 2\x3cbr /\x3e  length   sum\x3cbr /\x3e    \x3cbr /\x3e1     19     0\x3cbr /\x3e', 'timestamp': '1488566596503', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1488566596503#c90120943294702943', 'author': {'name': 'Anonymous', 'avatarUrl': '//img1.blogblog.com/img/blank.gif', 'profileUrl': ''}, 'displayTime': '3 March 2017 at 10:43', 'deleteclass': 'item-control blog-admin pid-990558792'}, {'id': '2094018356541202053', 'parentId': '90120943294702943', 'body': 'It works fine at my end. Check out the code below -\x3cbr /\x3elibrary(dplyr)\x3cbr /\x3emydata \x3d read.csv(\x26quot;C:\\\\Users\\\\Deepanshu\\\\Documents\\\\sampledata.csv\x26quot;)\x3cbr /\x3esummarise_all(mydata[\x26quot;Index\x26quot;], funs(nlevels(.), sum(is.na(.))))', 'timestamp': '1488567322792', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1488567322792#c2094018356541202053', 'author': {'name': 'Deepanshu Bhalla', 'avatarUrl': '//lh3.googleusercontent.com/-m-IN-WRLAdU/AAAAAAAAAAI/AAAAAAAAES0/KyMVqj64uyo/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/09802839558125192674'}, 'displayTime': '3 March 2017 at 10:55', 'deleteclass': 'item-control blog-admin pid-966036103'}, {'id': '1987453964627460958', 'parentId': '4675995991866100430', 'body': 'I got it. Thanks. I think I\x26#39;m ready to go next to your another tutorial - data.table. It\x26#39;s quite interesting to learn R from your blog posts.', 'timestamp': '1488592937878', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1488592937878#c1987453964627460958', 'author': {'name': 'Julian Chen', 'avatarUrl': '//lh3.googleusercontent.com/-8ScezAzysIo/AAAAAAAAAAI/AAAAAAAAAAA/sWC_CpMS1fE/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/16496933391210351227'}, 'displayTime': '3 March 2017 at 18:02', 'deleteclass': 'item-control blog-admin pid-502349167'}, {'id': '6082252540242734589', 'body': 'Example #21\x3cbr /\x3e\x3cbr /\x3eAlternatively, we can use the following:\x3cbr /\x3e\x3cbr /\x3emydata %\x26gt;% summarise_if(is.numeric, funs(n(),mean,median))', 'timestamp': '1488984749106', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1488984749106#c6082252540242734589', 'author': {'name': 'Wiola Stobieniecka', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/12463066191695209603'}, 'displayTime': '8 March 2017 at 06:52', 'deleteclass': 'item-control blog-admin pid-1355529908'}, {'id': '7302571253264302159', 'parentId': '6082252540242734589', 'body': 'Thank you for posting alternative method. I have added it to the tutorial. Cheers!', 'timestamp': '1488995537190', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1488995537190#c7302571253264302159', 'author': {'name': 'Deepanshu Bhalla', 'avatarUrl': '//lh3.googleusercontent.com/-m-IN-WRLAdU/AAAAAAAAAAI/AAAAAAAAES0/KyMVqj64uyo/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/09802839558125192674'}, 'displayTime': '8 March 2017 at 09:52', 'deleteclass': 'item-control blog-admin pid-966036103'}, {'id': '6009981367593283149', 'body': 'Very helpful tutorial. Thanks!', 'timestamp': '1490953627444', 'permalink': 'http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment\x3d1490953627444#c6009981367593283149', 'author': {'name': 'Shanthi Bhojaraj', 'avatarUrl': '//lh6.googleusercontent.com/-7WZUiCYv_gI/AAAAAAAAAAI/AAAAAAAAABs/m2LaIcwgb00/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/17318329622823655103'}, 'displayTime': '31 March 2017 at 02:47', 'deleteclass': 'item-control blog-admin pid-486082957'}];var k={'loadMore': 'Load more...', 'loading': 'Loading...', 'loaded': 'No more.', 'addComment': 'Add comment', 'reply': 'Reply', 'delete': 'Delete'};var t={'blogId': '7958828565254404797', 'postId': '7711108305188223144', 'feed': 'http://www.listendata.com/feeds/7711108305188223144/comments/default', 'authorName': 'Deepanshu Bhalla', 'authorUrl': 'https://www.blogger.com/profile/09802839558125192674', 'baseUri': 'https://www.blogger.com', 'maxThreadDepth': 2};var e=null;if(m&&m.length>0){e=parseInt(m[m.length-1].timestamp)+1}var r=function(x){if(x.gd$extendedProperty){for(var w in x.gd$extendedProperty){if(x.gd$extendedProperty[w].name=="blogger.contentRemoved"){return'<span class="deleted-comment">'+x.content.$t+"</span>"}}}return x.content.$t};var n=function(z){e=null;var D=[];if(z&&z.feed&&z.feed.entry){for(var A=0,E;E=z.feed.entry[A];A++){var C={};var w=/blog-(\d+).post-(\d+)/.exec(E.id.$t);C.id=w?w[2]:null;C.body=r(E);C.timestamp=Date.parse(E.published.$t)+"";if(E.author&&E.author.constructor===Array){var x=E.author[0];if(x){C.author={name:(x.name?x.name.$t:undefined),profileUrl:(x.uri?x.uri.$t:undefined),avatarUrl:(x.gd$image?x.gd$image.src:undefined)}}}if(E.link){if(E.link[2]){C.link=C.permalink=E.link[2].href}if(E.link[3]){var B=/.*comments\/default\/(\d+)\?.*/.exec(E.link[3].href);if(B&&B[1]){C.parentId=B[1]}}}C.deleteclass="item-control blog-admin";if(E.gd$extendedProperty){for(var y in E.gd$extendedProperty){if(E.gd$extendedProperty[y].name=="blogger.itemClass"){C.deleteclass+=" "+E.gd$extendedProperty[y].value}else{if(E.gd$extendedProperty[y].name=="blogger.displayTime"){C.displayTime=E.gd$extendedProperty[y].value}}}}D.push(C)}}return D};var i=function(y){if(c()){var x=t.feed+"?alt=json&v=2&orderby=published&reverse=false&max-results=50";if(e){x+="&published-min="+new Date(e).toISOString()}window.bloggercomments=function(A){var z=n(A);e=z.length<50?null:parseInt(z[z.length-1].timestamp)+1;y(z);window.bloggercomments=null};x+="&callback=bloggercomments";var w=document.createElement("script");w.type="text/javascript";w.src=x;document.getElementsByTagName("head")[0].appendChild(w)}};var c=function(){return !!e};var a=function(w,y){if("iswriter"==w){var x=!!y.author&&y.author.name==t.authorName&&y.author.profileUrl==t.authorUrl;return x?"true":""}else{if("deletelink"==w){return t.baseUri+"/delete-comment.g?blogID="+t.blogId+"&postID="+y.id}else{if("deleteclass"==w){return y.deleteclass}}}return""};var g=null;var q=null;var l=undefined;var d=function(w,x){if(g==null){g=document.getElementById("comment-editor");if(g!=null){g.height="250px";g.style.display="block";q=g.src.split("#")}}if(g&&(w!==l)){document.getElementById(x).insertBefore(g.parentNode,null);g.src=q[0]+(w?"&parentID="+w:"")+"#"+q[1];l=w}};var b=(window.location.hash||"#").substring(1);var p,j;if(/^comment-form_/.test(b)){p=b.substring("comment-form_".length)}else{if(/^c[0-9]+$/.test(b)){j=b.substring(1)}}var f={maxDepth:t.maxThreadDepth};var s={id:t.postId,data:m,loadNext:i,hasMore:c,getMeta:a,onReply:d,rendered:true,initComment:j,initReplyThread:p,config:f,messages:k};var u=function(){if(window.goog&&window.goog.comments){var w=document.getElementById("comment-holder");window.goog.comments.render(w,s)}};if(window.goog&&window.goog.comments){u()}else{window.goog=window.goog||{};window.goog.comments=window.goog.comments||{};window.goog.comments.loadQueue=window.goog.comments.loadQueue||[];window.goog.comments.loadQueue.push(u)}})();</script>
+<div id="comment-holder">
+
+<div id="bc_0_18C" kind="c"><div id="bc_0_18CT"><div id="bc_0_17T" class="comment-thread" kind="r" t="0" u="0"><ol id="bc_0_17TB"><li id="bc_0_1B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo.jpg"></div><div id="c5488152492608569956" class="comment-block"><div id="bc_0_1M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/14226294873361062770">Sergio Uribe</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1471830453545#c5488152492608569956">21 August 2016 at 18:47</a></span></div><p id="bc_0_1MC" class="comment-content">Thanks for share, great stuff and examples. </p><span id="bc_0_1MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-2024164576"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=5488152492608569956">Delete</a></span></span></div><div id="bc_0_1BR" class="comment-replies"><span id="bc_0_1b+seedFPeUD" kind="d"><div id="bc_0_0T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_0TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_0TA" class="thread-arrow"></span><span id="bc_0_0TN" class="thread-count"><span id="bc_0_0TNT" style="display: none;"></span><span id="bc_0_0TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_0TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_0TC" class="thread-chrome thread-expanded"><div><li id="bc_0_0B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(1).jpg"></div><div id="c8066970921186712762" class="comment-block"><div id="bc_0_0M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="https://www.blogger.com/profile/09802839558125192674">Deepanshu Bhalla</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1472923736668#c8066970921186712762">3 September 2016 at 10:28</a></span></div><p id="bc_0_0MC" class="comment-content">Thank you for stopping by my blog!</p><span id="bc_0_0MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-966036103"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=8066970921186712762">Delete</a></span></span></div><div id="bc_0_0BR" class="comment-replies"></div><div id="bc_0_0B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_0I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_0T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_1B_box" class="comment-replybox-single"></div></li><li id="bc_0_2B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35"></div><div id="c5601911273877651032" class="comment-block"><div id="bc_0_2M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/03326642000078446592">Unknown</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1473936462965#c5601911273877651032">15 September 2016 at 03:47</a></span></div><p id="bc_0_2MC" class="comment-content">This is the best tutorial out there</p><span id="bc_0_2MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1230090079"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=5601911273877651032">Delete</a></span></span></div><div id="bc_0_2BR" class="comment-replies"></div><div id="bc_0_2B_box" class="comment-replybox-single"></div></li><li id="bc_0_3B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35"></div><div id="c6287173114506451487" class="comment-block"><div id="bc_0_3M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/03770396389827674828">zeltak</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1474033910308#c6287173114506451487">16 September 2016 at 06:51</a></span></div><p id="bc_0_3MC" class="comment-content">excellent!<br><br>thx<br><br>Z</p><span id="bc_0_3MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-607240177"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=6287173114506451487">Delete</a></span></span></div><div id="bc_0_3BR" class="comment-replies"></div><div id="bc_0_3B_box" class="comment-replybox-single"></div></li><li id="bc_0_4B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/DSCN3479.JPG"></div><div id="c4153682443252283288" class="comment-block"><div id="bc_0_4M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/12053505195335230686">Michael Reinhard</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1477098156677#c4153682443252283288">21 October 2016 at 18:02</a></span></div><p id="bc_0_4MC" class="comment-content">Thank you, this is very helpful. </p><span id="bc_0_4MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1366512819"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=4153682443252283288">Delete</a></span></span></div><div id="bc_0_4BR" class="comment-replies"></div><div id="bc_0_4B_box" class="comment-replybox-single"></div></li><li id="bc_0_6B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35"></div><div id="c4519174106410069795" class="comment-block"><div id="bc_0_6M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/02293211762062073409">Bhail</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1481255276016#c4519174106410069795">8 December 2016 at 19:47</a></span></div><p id="bc_0_6MC" class="comment-content">Having searched many sites and lectures I am bookmarking your site after looking at this page.  Its the simplicity of your presentation.  Thanks.</p><span id="bc_0_6MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1952161935"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=4519174106410069795">Delete</a></span></span></div><div id="bc_0_6BR" class="comment-replies"><span id="bc_0_6b+seedFPeZD" kind="d"><div id="bc_0_5T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_5TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_5TA" class="thread-arrow"></span><span id="bc_0_5TN" class="thread-count"><span id="bc_0_5TNT" style="display: none;"></span><span id="bc_0_5TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_5TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_5TC" class="thread-chrome thread-expanded"><div><li id="bc_0_5B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35"></div><div id="c2417519568159335348" class="comment-block"><div id="bc_0_5M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/04301769767832902721">Deepanshu Bhalla</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1481258004741#c2417519568159335348">8 December 2016 at 20:33</a></span></div><p id="bc_0_5MC" class="comment-content">Thank you for stopping by my blog. Glad you found it useful. Cheers! </p><span id="bc_0_5MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-1831769651"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=2417519568159335348">Delete</a></span></span></div><div id="bc_0_5BR" class="comment-replies"></div><div id="bc_0_5B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_5I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_5T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_6B_box" class="comment-replybox-single"></div></li><li id="bc_0_8B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(2).jpg"></div><div id="c811861459163152430" class="comment-block"><div id="bc_0_8M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/12278362347915338818">Ravi Gupta</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1486441553442#c811861459163152430">6 February 2017 at 20:25</a></span></div><p id="bc_0_8MC" class="comment-content">Thank you, this indeed very helpful and precise. Great Job!</p><span id="bc_0_8MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-207380784"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=811861459163152430">Delete</a></span></span></div><div id="bc_0_8BR" class="comment-replies"><span id="bc_0_8b+seedFPecD" kind="d"><div id="bc_0_7T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_7TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_7TA" class="thread-arrow"></span><span id="bc_0_7TN" class="thread-count"><span id="bc_0_7TNT" style="display: none;"></span><span id="bc_0_7TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_7TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_7TC" class="thread-chrome thread-expanded"><div><li id="bc_0_7B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(1).jpg"></div><div id="c7944223762747497362" class="comment-block"><div id="bc_0_7M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="https://www.blogger.com/profile/09802839558125192674">Deepanshu Bhalla</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1488563677850#c7944223762747497362">3 March 2017 at 09:54</a></span></div><p id="bc_0_7MC" class="comment-content">Thank you for your appreciation!</p><span id="bc_0_7MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-966036103"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=7944223762747497362">Delete</a></span></span></div><div id="bc_0_7BR" class="comment-replies"></div><div id="bc_0_7B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_7I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_7T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_8B_box" class="comment-replybox-single"></div></li><li id="bc_0_11B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(3).jpg"></div><div id="c4675995991866100430" class="comment-block"><div id="bc_0_11M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/16496933391210351227">Julian Chen</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1488509071102#c4675995991866100430">2 March 2017 at 18:44</a></span></div><p id="bc_0_11MC" class="comment-content">I followed along your script step by step and got a warning message <br>in Example 29 : Multiply all the variables by 1000 as follows:<br>1: In Ops.factor(c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 3L, 3L, 4L, 5L, 6L,  :<br>  ‘*’ not meaningful for factors<br>2: In Ops.factor(1:51, 1000) : ‘*’ not meaningful for factors<br>What did it mean? Could you please give me some explanation. Thanks.</p><span id="bc_0_11MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-502349167"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=4675995991866100430">Delete</a></span></span></div><div id="bc_0_11BR" class="comment-replies"><span id="bc_0_11b+seedFPedD" kind="d"><div id="bc_0_9T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_9TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_9TA" class="thread-arrow"></span><span id="bc_0_9TN" class="thread-count"><span id="bc_0_9TNT" style="display: none;"></span><span id="bc_0_9TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_9TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_9TC" class="thread-chrome thread-expanded"><div><li id="bc_0_9B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(1).jpg"></div><div id="c5151320142747841371" class="comment-block"><div id="bc_0_9M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="https://www.blogger.com/profile/09802839558125192674">Deepanshu Bhalla</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1488564080411#c5151320142747841371">3 March 2017 at 10:01</a></span></div><p id="bc_0_9MC" class="comment-content">This error says 'multiplying 1000 on factor(string) variables' does not make sense. Run this command - str(mydata[,1:2])<br>First two variables in the dataframe mydata are strings that are stored as factor variables.</p><span id="bc_0_9MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-966036103"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=5151320142747841371">Delete</a></span></span></div><div id="bc_0_9BR" class="comment-replies"></div><div id="bc_0_9B_box" class="comment-replybox-single"></div></li><li id="bc_0_10B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(3).jpg"></div><div id="c1987453964627460958" class="comment-block"><div id="bc_0_10M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/16496933391210351227">Julian Chen</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1488592937878#c1987453964627460958">3 March 2017 at 18:02</a></span></div><p id="bc_0_10MC" class="comment-content">I got it. Thanks. I think I'm ready to go next to your another tutorial - data.table. It's quite interesting to learn R from your blog posts.</p><span id="bc_0_10MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-502349167"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=1987453964627460958">Delete</a></span></span></div><div id="bc_0_10BR" class="comment-replies"></div><div id="bc_0_10B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_9I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_9T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_11B_box" class="comment-replybox-single"></div></li><li id="bc_0_13B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/blank.gif"></div><div id="c90120943294702943" class="comment-block"><div id="bc_0_13M" class="comment-header" kind="m"><cite class="user">Anonymous</cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1488566596503#c90120943294702943">3 March 2017 at 10:43</a></span></div><p id="bc_0_13MC" class="comment-content">Example#22 - gives incorrect number of levels as 0 - fix is below<br>Why doesn't nlevels() work?<br>            <br>&gt; summarise_all(dt["Index"], funs(nlevels(.), sum(is.na(.))))<br># A tibble: 1 × 2<br>  nlevels   sum<br>     <br>1       0     0<br>===============<br>The fix is change nlevels() to length(unique(.)) as below<br><br>summarise_all(dt["Index"], funs(length(unique(.)), sum(is.na(.))))<br># A tibble: 1 × 2<br>  length   sum<br>    <br>1     19     0<br></p><span id="bc_0_13MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-990558792"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=90120943294702943">Delete</a></span></span></div><div id="bc_0_13BR" class="comment-replies"><span id="bc_0_13b+seedFPefD" kind="d"><div id="bc_0_12T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_12TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_12TA" class="thread-arrow"></span><span id="bc_0_12TN" class="thread-count"><span id="bc_0_12TNT" style="display: none;"></span><span id="bc_0_12TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_12TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_12TC" class="thread-chrome thread-expanded"><div><li id="bc_0_12B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(1).jpg"></div><div id="c2094018356541202053" class="comment-block"><div id="bc_0_12M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="https://www.blogger.com/profile/09802839558125192674">Deepanshu Bhalla</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1488567322792#c2094018356541202053">3 March 2017 at 10:55</a></span></div><p id="bc_0_12MC" class="comment-content">It works fine at my end. Check out the code below -<br>library(dplyr)<br>mydata = read.csv("C:\\Users\\Deepanshu\\Documents\\sampledata.csv")<br>summarise_all(mydata["Index"], funs(nlevels(.), sum(is.na(.))))</p><span id="bc_0_12MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-966036103"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=2094018356541202053">Delete</a></span></span></div><div id="bc_0_12BR" class="comment-replies"></div><div id="bc_0_12B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_12I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_12T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_13B_box" class="comment-replybox-single"></div></li><li id="bc_0_15B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35"></div><div id="c6082252540242734589" class="comment-block"><div id="bc_0_15M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/12463066191695209603">Wiola Stobieniecka</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1488984749106#c6082252540242734589">8 March 2017 at 06:52</a></span></div><p id="bc_0_15MC" class="comment-content">Example #21<br><br>Alternatively, we can use the following:<br><br>mydata %&gt;% summarise_if(is.numeric, funs(n(),mean,median))</p><span id="bc_0_15MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1355529908"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=6082252540242734589">Delete</a></span></span></div><div id="bc_0_15BR" class="comment-replies"><span id="bc_0_15b+seedFPeiD" kind="d"><div id="bc_0_14T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_14TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_14TA" class="thread-arrow"></span><span id="bc_0_14TN" class="thread-count"><span id="bc_0_14TNT" style="display: none;"></span><span id="bc_0_14TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_14TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_14TC" class="thread-chrome thread-expanded"><div><li id="bc_0_14B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(1).jpg"></div><div id="c7302571253264302159" class="comment-block"><div id="bc_0_14M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="https://www.blogger.com/profile/09802839558125192674">Deepanshu Bhalla</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1488995537190#c7302571253264302159">8 March 2017 at 09:52</a></span></div><p id="bc_0_14MC" class="comment-content">Thank you for posting alternative method. I have added it to the tutorial. Cheers!</p><span id="bc_0_14MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-966036103"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=7302571253264302159">Delete</a></span></span></div><div id="bc_0_14BR" class="comment-replies"></div><div id="bc_0_14B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_14I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_14T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_15B_box" class="comment-replybox-single"></div></li><li id="bc_0_16B" class="comment" kind="b"><div class="avatar-image-container"><img src="./dplyr Tutorial (With 50 Examples)_files/photo(4).jpg"></div><div id="c6009981367593283149" class="comment-block"><div id="bc_0_16M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="https://www.blogger.com/profile/17318329622823655103">Shanthi Bhojaraj</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://www.listendata.com/2016/08/dplyr-tutorial.html?showComment=1490953627444#c6009981367593283149">31 March 2017 at 02:47</a></span></div><p id="bc_0_16MC" class="comment-content">Very helpful tutorial. Thanks!</p><span id="bc_0_16MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-486082957"><a o="d" target="_self" href="https://www.blogger.com/delete-comment.g?blogID=7958828565254404797&amp;postID=6009981367593283149">Delete</a></span></span></div><div id="bc_0_16BR" class="comment-replies"></div><div id="bc_0_16B_box" class="comment-replybox-single"></div></li></ol><div id="bc_0_17I" class="continue" kind="ci" style="display: none;"><a href="javascript:;" target="_self">Add comment</a></div><div id="bc_0_17T_box" class="comment-replybox-thread"><div class="comment-form">
+<a name="comment-form"></a>
+<div class="pesan-komentar"><p>
+</p></div>
+<a href="https://www.blogger.com/comment-iframe.g?blogID=7958828565254404797&amp;postID=7711108305188223144&amp;blogspotRpcToken=7765158" id="comment-editor-src"></a>
+<iframe allowtransparency="true" class="blogger-iframe-colorize blogger-comment-from-post" frameborder="0" height="250px" id="comment-editor" name="comment-editor" src="./dplyr Tutorial (With 50 Examples)_files/comment-iframe.html" width="100%" data-resized="true" style="display: block;"></iframe>
+<!--Can't find substitution for tag [post.friendConnectJs]-->
+<script src="./dplyr Tutorial (With 50 Examples)_files/2492300974-comment_from_post_iframe.js.download" type="text/javascript"></script>
+<script type="text/javascript">BLOG_CMT_createIframe("https://www.blogger.com/rpc_relay.html","02295515061155625604");</script>
+</div></div><div id="bc_0_17L" class="loadmore loaded" kind="rb"><a href="javascript:;" target="_self">Load more...</a></div></div></div></div></div>
+</div>
+<p class="comment-footer">
+</p>
+<p></p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container">
+</div>
+</div>
+</div>
+</div>
+
+</div></div>
+<!--Can't find substitution for tag [adEnd]-->
+</div>
+<a class="recent-post-older-link" href="http://www.listendata.com/2016/08/4-ways-to-calculate-lag-and-lead-in-sas.html" id="Blog1_blog-pager-older-link" title="Older Post">Next →</a>
+<a class="recent-post-newer-link" href="http://www.listendata.com/2016/08/sas-statistical-business-analyst.html" id="Blog1_blog-pager-newer-link" title="Newer Post"> ← Prev</a>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="http://www.listendata.com/2016/08/sas-statistical-business-analyst.html" id="Blog1_blog-pager-newer-link" title="Newer Post">Newer Post</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://www.listendata.com/2016/08/4-ways-to-calculate-lag-and-lead-in-sas.html" id="Blog1_blog-pager-older-link" title="Older Post">Older Post</a>
+</span>
+<a class="home-link" href="http://www.listendata.com/">Home</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Subscribe to:
+<a class="feed-link" href="http://www.listendata.com/feeds/7711108305188223144/comments/default" target="_blank" type="application/atom+xml">Post Comments (Atom)</a>
+</div>
+</div>
+<script type="text/javascript">window.___gcfg = {'lang': 'en_GB'};</script>
+</div></div>
+</div>
+</div>
+<aside id="sidebar-wrapper">
+<div class="sidebar-container">
+<div class="sidebar section" id="sidebar"><div class="widget HTML" data-version="1" id="HTML1">
+<div class="widget-content">
+<style>
+.tbisubscribe {
+border: 1px solid #D3D3D3;
+padding: 8px;
+width: 300px;
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-ms-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+.tbisubscribe:hover {
+-moz-box-shadow: inset 1px 1px 10px 1px rgba(249, 215, 126, 1);
+-webkit-box-shadow: inset 1px 1px 10px 1px rgba(249, 215, 126, 1);
+box-shadow: inset 1px 1px 10px 1px rgba(249, 215, 126, 1);
+}
+.tbimailbox {
+border: 1px solid #D3D3D3;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+-moz-box-shadow: 1px 1px 1px 1px rgba(255, 172, 84, 0.4) inset;
+-webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4) inset;
+box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4) inset;
+color: #666;
+font: 14px "trebuchet ms", sans-serif;
+padding: 7px 15px;
+width: 160px;
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-ms-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+.tbimailbox:hover {
+-webkit-box-shadow: none;
+box-shadow: none;
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-ms-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+.tbisubmit {
+font: bold 12px Tahoma, Geneva, sans-serif;
+font-style: normal;
+color: #ffffff;
+background: #BA0000;
+border: 0px solid #ffffff;
+text-shadow: 0px -1px 1px #222222;
+box-shadow: 2px 2px 5px #000000;
+-moz-box-shadow: 2px 2px 5px #000000;
+-webkit-box-shadow: 2px 2px 5px #000000;
+border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+padding: 8px 15px;
+cursor: pointer;
+margin: 0 auto;
+}
+.tbisubmit:active {
+cursor: pointer;
+position: relative;
+top: 2px;
+}
+.tbisubmit::-moz-focus-inner {
+border: 0;
+padding: 0;
+margin: 0;
+}
+</style>
+<div class="tbisubscribe">
+<div style="color: #990000; font-weight: bold; font: 22px Oswald, cursive; margin: 0px 0px 10px 15px;">Join us with 3500+ Subscribers</div>
+<div style="color: #666666; font-weight: bold; font: 20px Oswald, cursive; margin: 0px 0px 10px 15px;">Subscribe to Free Updates</div>
+<div style="margin: 10px 0 0 6px;">
+<form action="http://feedburner.google.com/fb/a/mailverify" class="emailform" method="post" onsubmit="window.open(&#39;http://feedburner.google.com/fb/a/mailverify?uri=listendata&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=550,height=520&#39;);return true" style="margin: 0pt;" target="popupwindow">
+<input name="uri" type="hidden" value="listendata">
+<input name="loc" type="hidden" value="en_US">
+<input class="tbimailbox" name="email" onblur="if (this.value == &quot;&quot;) {this.value = &quot;Enter your email...&quot;;}" onfocus="if (this.value == &quot;Enter your email...&quot;) {this.value = &quot;&quot;}" type="text" value="Enter your email...">
+<input alt="" class="tbisubmit" title="" type="submit" value="Subscribe">
+</form>
+</div></div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=7958828565254404797&amp;widgetType=HTML&amp;widgetId=HTML1&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML1&quot;));" target="configHTML1" title="Edit">
+<img alt="" height="18" src="./dplyr Tutorial (With 50 Examples)_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget HTML" data-version="1" id="HTML3">
+<div class="widget-content">
+<!-- AdSense_300x600 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-4695912699318711" data-ad-slot="5857967783" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_3_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;width:300px;height:600px;" src="./dplyr Tutorial (With 50 Examples)_files/saved_resource(3).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=7958828565254404797&amp;widgetType=HTML&amp;widgetId=HTML3&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML3&quot;));" target="configHTML3" title="Edit">
+<img alt="" height="18" src="./dplyr Tutorial (With 50 Examples)_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget PopularPosts" data-version="1" id="PopularPosts1">
+<h2>Popular Posts</h2>
+<div class="widget-content popular-posts">
+<ul>
+<li>
+<div class="item-title"><a href="http://www.listendata.com/2013/05/excel-3-ways-to-extract-unique-values.html">3 Ways to extract unique values from a range in Excel</a></div>
+<div class="item-snippet">   This tutorial describes multiple ways to extract a unique or distinct list from a column in Excel. This post also covers a method to remo...</div>
+</li>
+<li>
+<div class="item-title"><a href="http://www.listendata.com/2013/09/sas-interview-questions-base-sas.html">SAS Interview Questions and Answers</a></div>
+<div class="item-snippet">   The following is a list of frequently asked SAS interview questions which covers basic, intermediate and advanced concepts of SAS. It cov...</div>
+</li>
+<li>
+<div class="item-title"><a href="http://www.listendata.com/2012/10/companies-using-sas-in-india.html">Analytics Companies Using SAS in India</a></div>
+<div class="item-snippet"> SAS (Statistical analysis system) is one of the most popular tool for data analysis and statistical modeling. It is one of the world's ...</div>
+</li>
+<li>
+<div class="item-title"><a href="http://www.listendata.com/2013/09/importing-excel-data-into-sas.html">Importing Excel Data into SAS</a></div>
+<div class="item-snippet">  PROC IMPORT is the SAS procedure used to read data from excel into SAS. This tutorial covers how to import excel data to SAS with PROC IMP...</div>
+</li>
+<li>
+<div class="item-title"><a href="http://www.listendata.com/2012/10/excel-intersection-of-two-linear.html">Excel : Intersection of two linear straight lines</a></div>
+<div class="item-snippet"> Most of us must find intersection of two linear straight lines with pen and paper during school days. In this article, we will see how to s...</div>
+</li>
+<li>
+<div class="item-title"><a href="http://www.listendata.com/2014/08/download-and-install-free-version-sas.html">Free Download and Install SAS Software</a></div>
+<div class="item-snippet">  SAS has recently released free SAS softwares. Anyone can access to SAS software for free and can play with data using SAS. It comes with v...</div>
+</li>
+<li>
+<div class="item-title"><a href="http://www.listendata.com/2014/11/random-forest-with-r.html">Random Forest in R : Step by Step Tutorial</a></div>
+<div class="item-snippet">   This tutorial explains about random forest in simple term and how it works with examples. It includes step by step guide of running rando...</div>
+</li>
+<li>
+<div class="item-title"><a href="http://www.listendata.com/2012/10/sample-size-calculator-in-excel.html">Sample Size Calculator with Excel</a></div>
+<div class="item-snippet"> Determining sample size is a very important issue because samples that are too large may waste time, resources and money, while samples tha...</div>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=7958828565254404797&amp;widgetType=PopularPosts&amp;widgetId=PopularPosts1&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;PopularPosts1&quot;));" target="configPopularPosts1" title="Edit">
+<img alt="" height="18" src="./dplyr Tutorial (With 50 Examples)_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+<div class="clear"></div>
+</div>
+</aside>
+</div>
+<div class="clear"></div>
+<footer id="footer-wrapper">
+<div class="footer-left">
+Copyright 2017 <a href="http://www.listendata.com/" rel="copyright">Listen Data</a>
+</div>
+</footer>
+</div>
+<script type="text/javascript">$(function(){$(".set-1").mtabs()});</script>
+<script type="text/javascript">var ww=document.body.clientWidth;$(document).ready(function(){$(".nav-menu li a").each(function(){if($(this).next().length>0){$(this).addClass("parent")}});$(".toggleMenu").click(function(a){a.preventDefault();$(this).toggleClass("active");$(".nav-menu").toggle()});adjustMenu()});$(window).bind("resize orientationchange",function(){ww=document.body.clientWidth;adjustMenu()});var adjustMenu=function(){if(ww<768){$(".toggleMenu").css("display","inline-block");if(!$(".toggleMenu").hasClass("active")){$(".nav-menu").hide()}else{$(".nav-menu").show()}$(".nav-menu li").unbind("mouseenter mouseleave");$(".nav-menu li a.parent").unbind("click").bind("click",function(a){a.preventDefault();$(this).parent("li").toggleClass("hover")})}else{if(ww>=768){$(".toggleMenu").css("display","none");$(".nav-menu").show();$(".nav-menu li").removeClass("hover");$(".nav-menu li a").unbind("click");$(".nav-menu li").unbind("mouseenter mouseleave").bind("mouseenter mouseleave",function(){$(this).toggleClass("hover")})}}};</script>
+<script type="text/javascript">
+/*! Matt Tabs v2.2.1 | https://github.com/matthewhall/matt-tabs */
+!function(d){var c=function(a,f){var e=this;e.element=a,e.$element=d(a),e.tabs=e.$element.children(),e.options=d.extend({},d.fn.mtabs.defaults,f),e.current_tab=0,e.init()};c.prototype={init:function(){var b=this;b.tabs.length&&(b.build(),b.buildTabMenu())},build:function(){var a=this,h=a.options,g=h.tab_text_el,f=h.container_class;a.tab_names=[],a.$wrapper=a.$element.wrapInner('<div class="'+f+'" />').find("."+f),a.tabs.wrapAll('<div class="'+h.tabs_container_class+'" />'),a.tabs.each(function(l,k){var j,i=d(k),b=g;j=i.find(b).filter(":first").hide().text(),a.tab_names.push(j)}),d.isFunction(h.onReady)&&h.onReady.call(a.element)},buildTabMenu:function(){for(var r,q=this,p=q.options,o=p.tabsmenu_el,n=q.tab_names,m="<"+o+' class="'+p.tabsmenu_class+'">',l=0,k=n.length,a=function(){var b=arguments;return p.tmpl.tabsmenu_tab.replace(/\{[0-9]\}/g,function(e){var f=Number(e.replace(/\D/g,""));return b[f]||""})};k>l;l++){m+=a(l+1,n[l])}m+="</"+o+">",q.$tabs_menu=d(m).prependTo(q.$wrapper),r=q.$tabs_menu.find(":first")[0].nodeName.toLowerCase(),q.$tabs_menu.on("click",r,function(f){var h=d(this),g=h.index();q.show(g),f.preventDefault()}).find(":first").trigger("click")},show:function(a){var h=this,g=h.options,f=g.active_tab_class;h.tabs.hide().filter(":eq("+a+")").show(),h.$tabs_menu.children().removeClass(f).filter(":eq("+a+")").addClass(f),d.isFunction(g.onTabSelect)&&a!==h.current_tab&&g.onTabSelect.call(h.element,a),h.current_tab=a},destroy:function(){var f=this,e=f.options.tab_text_el;f.$tabs_menu.remove(),f.tabs.unwrap().unwrap(),f.tabs.removeAttr("style"),f.tabs.children(e+":first").removeAttr("style"),f.$element.removeData("mtabs")}},d.fn.mtabs=function(b,a){return this.each(function(){var j,i=d(this),h=i.data("mtabs");j="object"==typeof b&&b,h||i.data("mtabs",h=new c(this,j)),"string"==typeof b&&h[b](a)})},d.fn.mtabs.defaults={container_class:"tabs",tabs_container_class:"tabs-content",active_tab_class:"active-tab",tab_text_el:"h1, h2, h3, h4, h5, h6",tabsmenu_class:"tabs-menu",tabsmenu_el:"ul",tmpl:{tabsmenu_tab:'<li class="tab-{0}"><span>{1}</span></li>'},onTabSelect:null}}(window.jQuery,window,document);</script>
+<!--<script src='https://apis.google.com/js/plusone.js' type='text/javascript'></script>
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/2927951645-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY7EXfuvj0-Tz1isjT4g47RMrtEhHw:1494083847477';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d7958828565254404797','//www.listendata.com/2016/08/dplyr-tutorial.html','7958828565254404797');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '7958828565254404797', 'title': 'Listen Data', 'url': 'http://www.listendata.com/2016/08/dplyr-tutorial.html', 'canonicalUrl': 'http://www.listendata.com/2016/08/dplyr-tutorial.html', 'homepageUrl': 'http://www.listendata.com/', 'searchUrl': 'http://www.listendata.com/search', 'canonicalHomepageUrl': 'http://www.listendata.com/', 'blogspotFaviconUrl': 'http://www.listendata.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': true, 'httpsEnabled': false, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': 'UA-76384860-1', 'useUniversalAnalytics': true, 'encoding': 'UTF-8', 'locale': 'en-GB', 'localeUnderscoreDelimited': 'en_gb', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Listen Data - Atom\x22 href\x3d\x22http://www.listendata.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Listen Data - RSS\x22 href\x3d\x22http://www.listendata.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Listen Data - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/7958828565254404797/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Listen Data - Atom\x22 href\x3d\x22http://www.listendata.com/feeds/7711108305188223144/comments/default\x22 /\x3e\n', 'meTag': '', 'openIdOpTag': '', 'mobileHeadScript': '', 'adsenseClientId': 'ca-pub-4695912699318711', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/449444907-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/7cdae73b63eaf62a', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Google+', 'key': 'googlePlus', 'shareMessage': 'Share to Google+', 'target': 'googleplus'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en_GB\x27};\x3c/script\x3e'}, 'jumpLinkMessage': 'READ MORE &#187;', 'pageType': 'item', 'postId': '7711108305188223144', 'postImageThumbnailUrl': 'https://2.bp.blogspot.com/-pcUH6lXqF2s/WAfItWaMd0I/AAAAAAAAFjU/QWfpSsrXTOsL1ABv-3rnh6ipqKVuPp2YQCLcB/s72-c/dplyr.png', 'postImageUrl': 'https://2.bp.blogspot.com/-pcUH6lXqF2s/WAfItWaMd0I/AAAAAAAAFjU/QWfpSsrXTOsL1ABv-3rnh6ipqKVuPp2YQCLcB/s1600/dplyr.png', 'pageName': 'dplyr Tutorial (With 50 Examples)', 'pageTitle': 'Listen Data: dplyr Tutorial (With 50 Examples)'}}, {'name': 'features', 'data': {'enhancedSourcesets': 'true', 'unsupported_browser_message': 'false', 'lightbox_img_parsing': 'false'}}, {'name': 'messages', 'data': {'linkCopiedToClipboard': 'Link copied to clipboard', 'postLink': 'Post link'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'dplyr Tutorial (With 50 Examples)', 'description': ' dplyr R Tutorial   The dplyr package is one of the most powerful and popular package in R. This package was written by the most popular R p...', 'featuredImage': 'https://2.bp.blogspot.com/-pcUH6lXqF2s/WAfItWaMd0I/AAAAAAAAFjU/QWfpSsrXTOsL1ABv-3rnh6ipqKVuPp2YQCLcB/s1600/dplyr.png', 'url': 'http://www.listendata.com/2016/08/dplyr-tutorial.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 7711108305188223144}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'header-right', null, document.getElementById('HTML2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/3855895996-lbx__en_gb.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/368954415-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebar', null, document.getElementById('HTML1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML3', 'sidebar', null, document.getElementById('HTML3'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PopularPostsView', new _WidgetInfo('PopularPosts1', 'sidebar', null, document.getElementById('PopularPosts1'), {}, 'displayModeFull'));
+</script>
+</body>
+--> 
+</body></html>

@@ -1,0 +1,18 @@
+---
+title: "DATA TYPE-DATA FRAME"
+output: html_notebook
+---
+it contais variables and records. diff columns can have different modes(numeric,character,factoe etc).
+**data.frame** is used to combine variables(vector and factor) into a data frame.
+```{r}
+x=c(1,2,3)
+y=c(4,5,6)
+z=c(7,8,9)
+gender=c("female","male","female")
+mydata=data.frame(x,y,z,gender)
+mydata
+dim(mydata)
+
+```
+
+

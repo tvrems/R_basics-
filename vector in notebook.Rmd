@@ -1,0 +1,30 @@
+---
+title: " DATA TYPE-VECTOR"
+author: "Remya T V"
+date: "May 6, 2017"
+output: html_document
+---
+vector-objects that contains set of values called its elements. along with {r} if we give echo=FALSE, we wont get code in the R markdown output. if you dont give anything, it will take it as TRUE.
+
+## numeric vector
+
+```{r}
+x=c(1,2,3,4,5)
+y=mean(x)
+y
+r=c(1,NA,3)
+s=mean(r)
+s
+s=mean(r,na.rm=TRUE)
+s
+x=c(1,2,3,4,5,6)
+sum(x[c(2,3)])
+```
+## character vector
+
+```{r}
+x=c("love","care","love","anger")
+table(x)
+```
+
+

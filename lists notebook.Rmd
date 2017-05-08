@@ -1,0 +1,27 @@
+---
+title: "DATA TYPE-LISTS"
+output: html_notebook
+---
+allows to store variety of objects
+```{r}
+x=c(1,2,3)
+y=c(4,5,6)
+z=c(7,8,9)
+gender=c("female","male","female")
+mydata=data.frame(x,y,z,gender)
+see=list(x,y,z,gender,mydata)
+see
+```
+```{r}
+x=1:16
+x=factor(x)
+class(x)
+mode(x)
+y=c("remya","sijo")
+class(y)
+mode(y)
+z=c("remya",35)
+class(z)
+mode(z)
+```
+

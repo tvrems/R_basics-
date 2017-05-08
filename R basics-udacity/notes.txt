@@ -1,0 +1,9 @@
+1-getwd returns an absolute filepath representing the current working directory of the R process; setwd(dir) is used to set the working directory to dir .
+2-dollar symbol gives the actual variable value.
+3-R Markdown document or RMD is a file format for making dynamic documents with R. An R Markdown document is written in markdown (an easy-to-write plain text format) and contains chunks of embedded R code, like the document below. ... Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.
+Markdown is simple formatting synatx for authoring web pages.
+
+4-Data munging or data wrangling is loosely defined as the process of manually converting or mapping data from one "raw" form into another format that allows for more convenient consumption of the data with the help of semi-automated tools. ... A data wrangler is the person performing the wrangling.
+5-TSV is a file extension for a tab-delimited file used with spreadsheet software. TSV stands for Tab Separated Values. ... TSV files are essentially text files, and the raw data can be viewed by text editors, though they are often used when moving raw data between spreadsheets.A tab-separated values (TSV) file is a simple text format for storing data in a tabular structure (e.g., database table or spreadsheet data). Each record in the table is one line of the text file.
+
+6-library ggplot2-in that qplot(x=,data=)asw u wish!

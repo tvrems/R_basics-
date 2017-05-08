@@ -1,0 +1,35 @@
+---
+title: "DATA TYPE-MATRICES"
+output: html_notebook
+---
+all columns should have same mode(character,numeric etc.) and same length.**cbind** function is used to combine columns into a matrix.
+
+## matrix form
+
+```{r}
+x=c(1,2,0.9)
+y=c(4,0.5,6)
+z=c(0.7,8,9)
+mymatrix=cbind(x,y,z)
+mymatrix
+```
+## dimension
+```{r}
+dim(mymatrix)
+```
+## correlation
+```{r}
+cor(mymatrix)
+```
+## use subscripts to identify rows and columns
+```{r}
+mymatrix[3,]
+```
+```{r}
+mymatrix[2,3]
+```
+```{r}
+mymatrix[1:2,2:3]
+```
+## note- similar to matrices, we have another data type called **ARRAY**
+## array has more than two dimensions

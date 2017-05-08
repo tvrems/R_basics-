@@ -1,0 +1,13 @@
+---
+title: " DATA TYPE-FACTOR"
+output: html_notebook
+---
+to store categorical variables. it tells normally R that a variable is ordinal or nominal by making it a factor
+```{r}
+gender=c(1,2,1,2,1,1,2,2,1)
+table(gender)
+gender=factor(gender,levels = c(1,2),labels=c("male","female"))
+table(gender)
+plot(gender)
+```
+

@@ -1,0 +1,109 @@
+---
+title: "dplyr package"
+output: html_notebook
+---
+```{r}
+install.packages("dplyr")
+library(dplyr)
+```
+
+```{r}
+getwd()
+mydata=read.csv("sampledata.csv")
+```
+## Selecting Random N Rows
+```{r}
+sample_n(mydata,3)
+```
+## Selecting Random Fraction of Rows
+```{r}
+sample_frac(mydata,0.1)
+```
+## Remove Duplicate Rows based on all the variables (Complete Row)
+
+The distinct function is used to eliminate duplicates.
+```{r}
+x1=distinct(mydata)
+```
+## Remove Duplicate Rows based on a variable
+
+The .keep_all function is used to retain all other variables in the output data frame.
+```{r}
+x2 = distinct(mydata, Index, .keep_all= TRUE)
+```
+## Remove Duplicates Rows based on multiple variables
+
+we are using two variables - Index, Y2010 to determine uniqueness.
+```{r}
+x2 = distinct(mydata, Index, Y2010, .keep_all= TRUE)
+```
+## **select( ) Function**
+Selecting Variables (or Columns)
+```{r}
+mydata2 = select(mydata, Index, State:Y2008)
+```
+ Dropping Variables
+
+The minus sign before a variable tells R to drop the variable.
+```{r}
+mydata = select(mydata, -c(Index,State))
+```
+ Selecting or Dropping Variables starts with 'S' and 'Y'
+The starts_with() function is used to select variables starts with an alphabet.
+```{r}
+mydata3=select(mydata,starts_with("S"))
+mydata3plus=select(mydata,starts_with("Y"))
+```
+Adding a negative sign before starts_with() implies dropping the variables starts with 'Y' and 'I'
+```{r}
+mydata4=select(mydata,-starts_with("y"))
+mydata4plus=select(mydata,-starts_with("I"))
+```
+ends_with()
+```{r}
+mydata5=select(mydata,ends_with("2008"))
+```
+Selecting Variables contain 'Y' in their names
+```{r}
+mydata5plus=select(mydata,contains("Y"))
+```
+Reorder Variables
+
+The code below keeps variable 'State' in the front and the remaining variables follow that.
+```{r}
+mydata6=select(mydata,State,everything())
+```
+## **rename( ) Function**
+Rename Variables
+```{r}
+mydata7=rename(mydata,Index1=Index)
+```
+##**filter( ) Function**
+ Filter Rows
+
+Suppose you need to subset data. You want to filter rows and retain only those values in which Index is equal to A.similarily, alaska.
+```{r}
+mydata8=filter(mydata,Index=="A")
+mydata8plus=filter(mydata,State=="Alaska")
+```
+Multiple Selection Criteria
+
+The %in% operator can be used to select multiple items.
+```{r}
+mydata9=filter(mydata,Index%in%c("A","C"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
